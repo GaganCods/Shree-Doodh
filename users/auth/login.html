@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Shree Doodh - Login</title>    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="apple-touch-icon" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="../config/firebase-config.js"></script>
+    <script defer src="../assets/js/auth.js"></script>
+    
+    <!-- Add error handling wrapper -->
+    <script>
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('Something went wrong. Please try again.');
+            return true;
+        };
+    </script>
+    
+</head>
+<body>
+    
+    <a href="../../index.html" class="back-home-btn">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+      
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <img src="../assets/images/logo.png" alt="MilkMate Logo" class="logo-img">
+                </div>
+                <h2>Welcome Back!</h2>
+            </div>
+            
+            <div class="auth-form-container">
+                <form id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" required>
+                            <i class="fas fa-eye toggle-password"></i>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox">
+                            Remember me
+                        </label>
+                        <a href="forgot-password.html" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <button type="button" class="btn-google">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </button>
+                    <div class="auth-switch">
+                        Don't have an account? <a href="signup.html">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="error-message"></div></body>
+</html>

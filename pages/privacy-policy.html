@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../users/assets/images/fav-icon.png">
+    <link rel="apple-touch-icon" href="../users/assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../users/assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../users/assets/css/info.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo-link">
+                <img src="../users/assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="logo-img">
+            </a>
+
+            <div class="hamburger" onclick="toggleMobileNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="mobile-nav" id="mobileNav">
+                <div class="nav-links">
+                    <a href="../index.html" class="btn-nav">Home</a>
+                    <a href="../index.html#features" class="btn-nav">Features</a>
+                    <a href="../index.html#how-it-works" class="btn-nav">How It Works</a>
+                    <a href="../index.html#about" class="btn-nav">About</a>
+                    <a href="../index.html#faq" class="btn-nav">FAQs</a>
+                    <a href="contact-us.html" class="btn-nav">Contact</a>
+                </div>
+                <div class="nav-buttons" id="navButtons">
+                    <!-- This div will be controlled by JavaScript based on login status -->
+                    <div id="loggedOutButtons">
+                        <a href="../users/auth/login.html" class="btn btn-login">Login</a>
+                        <a href="../users/auth/signup.html" class="btn btn-signup">Sign Up</a>
+                    </div>
+                    
+                    <!-- User dropdown (hidden by default) -->
+                    <div id="userDropdown" class="user-dropdown" style="display: none;">
+                        <div class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+                            <img id="userProfilePic" src="../users/assets/images/user.png" alt="Profile Picture" class="user-avatar">
+                            <span id="userName" style="color:#2F2F2F;">User Name</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown-menu-wrapper">
+                            <div class="user-dropdown-menu">
+                                <a href="../users/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                                <a href="../users/pages/settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="section-container">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last updated: June 19, 2025</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content-container">
+        <section class="content-section" id="information-we-collect">
+            <h2>1. Information We Collect</h2>
+            <p>At Shree Doodh, we collect various types of information to provide and improve our services. Here's what we collect:</p>
+            
+            <h3>Personal Information</h3>
+            <p>When you create an account or use our services, we may collect the following personal information:</p>
+            <ul>
+                <li>Name and contact details (email address, phone number)</li>
+                <li>Account credentials (username, password)</li>
+                <li>Profile information (profile picture, preferences)</li>
+                <li>Payment information (if applicable)</li>
+            </ul>
+            
+            <h3>Usage Data</h3>
+            <p>We automatically collect certain information when you use our application:</p>
+            <ul>
+                <li>Milk consumption data that you input</li>
+                <li>Preferences and settings</li>
+                <li>Device information (device type, operating system)</li>
+                <li>Log data (IP address, browser type, pages visited)</li>
+                <li>Usage patterns and feature interaction</li>
+            </ul>
+        </section>
+
+        <section class="content-section" id="how-we-use-information">
+            <h2>2. How We Use Your Information</h2>
+            <p>We use the collected information for various purposes, including:</p>
+            <ul>
+                <li>Providing and maintaining our service</li>
+                <li>Personalizing your experience</li>
+                <li>Processing your transactions</li>
+                <li>Sending you notifications and updates</li>
+                <li>Analyzing usage patterns to improve our service</li>
+                <li>Detecting and preventing fraudulent activities</li>
+                <li>Complying with legal obligations</li>
+            </ul>
+            <p>We process your data only for the purposes described in this Privacy Policy and in accordance with relevant data protection laws.</p>
+        </section>
+
+        <section class="content-section" id="data-storage">
+            <h2>3. Data Storage & Security</h2>
+            <p>We take the security of your data seriously and implement appropriate technical and organizational measures to protect it.</p>
+            
+            <h3>Data Storage</h3>
+            <p>Your data is stored on secure servers provided by Google Firebase. We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy.</p>
+            
+            <h3>Security Measures</h3>
+            <p>We implement various security measures to protect your data, including:</p>
+            <ul>
+                <li>Encryption of data in transit and at rest</li>
+                <li>Regular security assessments</li>
+                <li>Access controls and authentication mechanisms</li>
+                <li>Secure backup procedures</li>
+            </ul>
+            <p>While we strive to protect your personal information, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security.</p>
+        </section>
+
+        <section class="content-section" id="third-party-services">
+            <h2>4. Third-Party Services</h2>
+            <p>Our service may contain links to third-party websites or services that are not owned or controlled by Shree Doodh. We have no control over, and assume no responsibility for the content, privacy policies, or practices of any third-party websites or services.</p>
+            
+            <h3>Service Providers</h3>
+            <p>We may employ third-party companies and individuals to facilitate our service ("Service Providers"), provide the service on our behalf, or assist us in analyzing how our service is used. These third parties have access to your personal data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+            
+            <h3>Analytics</h3>
+            <p>We may use third-party Service Providers to monitor and analyze the use of our service, such as Google Analytics.</p>
+        </section>
+
+        <section class="content-section" id="cookies">
+            <h2>5. Cookies and Tracking</h2>
+            <p>We use cookies and similar tracking technologies to track activity on our service and hold certain information.</p>
+            <p>Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device.</p>
+            
+            <h3>Types of Cookies We Use</h3>
+            <ul>
+                <li><strong>Session Cookies:</strong> Used to operate our service</li>
+                <li><strong>Preference Cookies:</strong> Used to remember your preferences and settings</li>
+                <li><strong>Security Cookies:</strong> Used for security purposes</li>
+                <li><strong>Analytics Cookies:</strong> Used to understand how you use our service</li>
+            </ul>
+            
+            <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our service.</p>
+        </section>
+
+        <section class="content-section" id="user-rights">
+            <h2>6. User Rights & Access</h2>
+            <p>Depending on your location, you may have certain rights regarding your personal information:</p>
+            <ul>
+                <li>The right to access the personal information we hold about you</li>
+                <li>The right to request correction of inaccurate personal information</li>
+                <li>The right to request deletion of your personal information</li>
+                <li>The right to restrict or object to processing of your personal information</li>
+                <li>The right to data portability</li>
+                <li>The right to withdraw consent at any time</li>
+            </ul>
+            <p>To exercise any of these rights, please contact us using the information provided in the "Contact" section.</p>
+        </section>
+
+        <section class="content-section" id="policy-updates">
+            <h2>7. Policy Updates</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
+            <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+        </section>
+
+        <section class="content-section" id="contact">
+            <h2>8. Contact</h2>
+            <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+            <ul>
+                <li>By email: <a href="mailto:privacy@shreedoodh.com">privacy@shreedoodh.com</a></li>
+                <li>By visiting our contact page: <a href="contact-us.html">Contact Us</a></li>
+                <li>By mail: Shree Doodh Headquarters, 123 Milk Street, Mumbai, India</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo-link">
+                    <img src="../users/assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="logo-img">
+                </a>
+                <p>Track your milk, simplify your life</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <a href="../index.html#home">Home</a>
+                    <a href="../index.html#features">Features</a>
+                    <a href="../index.html#about">About</a>
+                    <a href="contact-us.html">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="terms-and-conditions.html">Terms & Conditions</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Shree Doodh. All rights reserved.</p>
+            <p>Crafted by <a href="https://gaganpratap.vercel.app/" class="dev-credit" target="_blank">Gagan Creates</a></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="../users/config/firebase-config.js"></script>
+    <script src="../users/config/firebase.js"></script>
+    <script src="../users/assets/js/utils.js"></script>
+    <script src="../users/assets/js/page-profile-loader.js"></script>
+    <script src="../users/assets/js/script.js"></script>
+</body>
+</html> 

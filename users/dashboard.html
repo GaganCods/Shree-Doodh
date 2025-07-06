@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="assets/images/fav-icon.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/sidebar-navbar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/mobile-navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="horizontal-logo">
+                <img src="assets/images/logo.png" alt="Shree Doodh Logo" class="vertical-logo">
+            </div>
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a href="dashboard.html" class="nav-link" id="navDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="pages/milk-records.html" class="nav-link" id="navMilkRecords">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span class="nav-text">Milk Records</span>
+                </a>
+                <a href="pages/statistics.html" class="nav-link" id="navStatistics">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Statistics</span>
+                </a>
+                <a href="pages/sources-pricing.html" class="nav-link" id="navSources">
+                    <i class="fas fa-store"></i>
+                    <span class="nav-text">Sources & Pricing</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-section">
+                <a href="pages/notifications.html" class="nav-link" id="navNotifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notifications</span>
+                    <span class="notification-badge" id="notificationBadge"></span>
+                </a>
+                <a href="#" class="nav-link" id="navRefresh">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="nav-text">Refresh</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-user" id="sidebarUserContainer" style="z-index: 1000;" onclick="toggleUserDropdown(event)">
+            <div class="user-profile-container">
+                <img id="sidebarUserAvatar" src="assets/images/user.png" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">User Name</span>
+                    <span class="user-email" id="sidebarUserEmail">user@example.com</span>
+                </div>
+                <i class="fas fa-chevron-down dropdown-arrow" id="userDropdownArrow"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- User Dropdown Menu -->
+    <div class="user-dropdown-menu" id="userDropdownMenu">
+        <div class="dropdown-header">
+            <img id="dropdownUserAvatar" src="assets/images/user.png" alt="User Avatar" class="dropdown-user-avatar">
+            <div class="dropdown-user-info">
+                <span class="dropdown-user-name" id="dropdownUserName">Loading...</span>
+                <span class="dropdown-user-email" id="dropdownUserEmail">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="pages/settings.html#profileSection" class="dropdown-item">
+            <i class="fas fa-user-edit"></i>
+            <span>Edit Profile</span>
+        </a>
+        <a href="pages/settings.html#passwordSection" class="dropdown-item" id="resetPasswordBtn" onclick="resetUserPassword(); return false;">
+            <i class="fas fa-key"></i>
+            <span>Reset Password</span>
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="notificationsToggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode(this.checked)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="#" class="dropdown-item logout-item" id="logoutBtn" onclick="logoutUser(); return false;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-navbar" id="mobileBottomNavbar">
+        <a href="dashboard.html" class="mobile-nav-item active" id="mobileNavDashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="pages/milk-records.html" class="mobile-nav-item" id="mobileNavRecords">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Records</span>
+        </a>
+        <a href="pages/statistics.html" class="mobile-nav-item" id="mobileNavStats">
+            <i class="fas fa-chart-line"></i>
+            <span>Stats</span>
+        </a>
+        <a href="pages/sources-pricing.html" class="mobile-nav-item" id="mobileNavSources">
+            <i class="fas fa-store"></i>
+            <span>Sources</span>
+        </a>
+        <a href="pages/profile.html" class="mobile-nav-item" id="mobileNavMore">
+            <div class="mobile-nav-avatar">
+                <img id="mobileNavAvatar" src="assets/images/user.png" alt="User Avatar">
+            </div>
+            <span>Profile</span>
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="greeting">
+                <h1>Dashboard</h1>
+                <p id="greetingText">Good morning, <span id="userNameGreeting">User</span>!</p>
+            </div>
+            <div class="quick-actions">
+                <button id="addRecordBtn" class="action-btn primary">
+                    <i class="fas fa-plus"></i>
+                    <span>Add Record</span>
+                </button>
+                <button id="exportDataBtn" class="action-btn secondary">
+                    <i class="fas fa-download"></i>
+                    <span>Export</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card" id="todayMilkCard">
+                <div class="stat-icon milk">
+                    <i class="fas fa-wine-bottle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Today's Milk</h3>
+                    <p class="stat-value" id="todayMilkValue">0 L</p>
+                    <p class="stat-change positive" id="todayMilkChange">+0.2 L from yesterday</p>
+                </div>
+            </div>
+            
+            <div class="stat-card" id="todayExpenseCard">
+                <div class="stat-icon expense">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Today's Expense</h3>
+                    <p class="stat-value" id="todayExpenseValue">₹0.00</p>
+                    <p class="stat-change negative" id="todayExpenseChange">+₹10 from yesterday</p>
+                </div>
+            </div>
+            
+            <div class="stat-card" id="monthlyTotalCard">
+                <div class="stat-icon total">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Monthly Total</h3>
+                    <p class="stat-value" id="monthlyMilkValue">0 L</p>
+                    <p class="stat-value secondary" id="monthlyExpenseValue">₹0.00</p>
+                </div>
+            </div>
+            
+            <div class="stat-card" id="avgPriceCard">
+                <div class="stat-icon average">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Avg. Price/Liter</h3>
+                    <p class="stat-value" id="avgPriceValue">₹0.00</p>
+                    <p class="stat-change neutral" id="avgPriceChange">No change</p>
+                </div>
+            </div>
+            
+            <div class="stat-card" id="sourcesCard">
+                <div class="stat-icon sources">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Total Sources</h3>
+                    <p class="stat-value" id="sourcesValue">0</p>
+                    <p class="stat-change positive" id="sourcesChange">+1 new this month</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-row">
+                <!-- Milk Usage & Price Trends -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Milk Usage & Price Trends</h3>
+                        <div class="chart-actions">
+                            <button class="chart-period-btn active" data-period="week">Week</button>
+                            <button class="chart-period-btn" data-period="month">Month</button>
+                            <button class="chart-period-btn" data-period="year">Year</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Expense Distribution -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Expense Distribution</h3>
+                        <div class="chart-actions">
+                            <button class="chart-type-btn active" data-type="source">By Source</button>
+                            <button class="chart-type-btn" data-type="type">By Type</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-row">
+                <!-- Source-wise Supply -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Source-wise Supply</h3>
+                        <div class="chart-actions">
+                            <button class="chart-period-btn active" data-period="week">Week</button>
+                            <button class="chart-period-btn" data-period="month">Month</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="sourceChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Daily vs Occasional Supply -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Supply Frequency</h3>
+                        <div class="chart-info">
+                            <span class="chart-label">
+                                <span class="color-dot daily"></span>Daily
+                            </span>
+                            <span class="chart-label">
+                                <span class="color-dot occasional"></span>Occasional
+                            </span>
+                        </div>
+                    </div>
+                    <div class="chart-container pie-container">
+                        <canvas id="frequencyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Section -->
+        <div class="bottom-section">
+            <!-- Smart Insights -->
+            <div class="insights-card">
+                <div class="card-header">
+                    <h3>Smart Insights</h3>
+                    <button class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                <div class="insights-content">
+                    <div class="insight-item">
+                        <div class="insight-icon cheapest">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="insight-text">
+                            <h4>Cheapest Source</h4>
+                            <p>"Sharma Dairy" offers the lowest price at ₹48/L</p>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <div class="insight-icon warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="insight-text">
+                            <h4>Price Hike Detected</h4>
+                            <p>"Gupta Milk" increased price by ₹2/L this week</p>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-item">
+                        <div class="insight-icon alert">
+                            <i class="fas fa-calendar-times"></i>
+                        </div>
+                        <div class="insight-text">
+                            <h4>Missed Days</h4>
+                            <p>No milk recorded on May 15, 16</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Monthly Calendar -->
+            <div class="calendar-card">
+                <div class="card-header">
+                    <h3>Monthly Calendar</h3>
+                    <div class="month-selector">
+                        <button class="month-nav prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span id="currentMonth">May 2024</span>
+                        <button class="month-nav next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="calendar-container" id="milkCalendar">
+                    <!-- Calendar will be generated by JavaScript -->
+                </div>
+                <div class="calendar-legend">
+                    <span class="legend-item">
+                        <span class="legend-icon received"></span>
+                        <span>Received</span>
+                    </span>
+                    <span class="legend-item">
+                        <span class="legend-icon missed"></span>
+                        <span>Missed</span>
+                    </span>
+                    <span class="legend-item">
+                        <span class="legend-icon holiday"></span>
+                        <span>Holiday</span>
+                    </span>
+                    <span class="legend-item">
+                        <span class="legend-icon extra"></span>
+                        <span>Extra</span>
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Budget Progress -->
+            <div class="budget-card">
+                <div class="card-header">
+                    <h3>Monthly Budget</h3>
+                    <span class="budget-date">May 1-31, 2024</span>
+                </div>
+                <div class="budget-content">
+                    <div class="budget-progress-container">
+                        <div class="budget-progress-bar">
+                            <div class="budget-progress" id="budgetProgress"></div>
+                            <div class="budget-indicator" id="budgetIndicator"></div>
+                        </div>
+                        <div class="budget-labels">
+                            <div class="budget-spent">
+                                <span class="budget-label">Spent</span>
+                                <span class="budget-value">₹1,450</span>
+                            </div>
+                            <div class="budget-limit">
+                                <span class="budget-label">Budget</span>
+                                <span class="budget-value">₹3,000</span>
+                            </div>
+                        </div>
+                        <div class="budget-percentage">
+                            <span class="percentage-value">48.3%</span>
+                            <span class="percentage-label">of budget used</span>
+                        </div>
+                        <div class="budget-status">
+                            <div class="status-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="status-text">You're on track with your monthly budget</div>
+                        </div>
+                    </div>
+                    <button id="setBudgetBtn" class="set-budget-btn">
+                        <i class="fas fa-edit"></i>
+                        <span>Set Budget</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Quick Notes -->
+            <div class="notes-card">
+                <div class="card-header">
+                    <h3>Quick Notes</h3>
+                    <button class="add-note-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Note</span>
+                    </button>
+                </div>
+                <div class="notes-container">
+                    <div class="note-item">
+                        <div class="note-date">May 18</div>
+                        <div class="note-content">Requested extra 1L for weekend guests</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-date">May 15</div>
+                        <div class="note-content">Quality issues with morning delivery, requested replacement</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-date">May 10</div>
+                        <div class="note-content">Informed supplier about vacation from Jun 1-5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Add Record Modal -->
+    <div class="modal" id="addRecordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Milk Record</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addRecordForm">
+                    <div class="form-group">
+                        <label for="recordDate">Date</label>
+                        <input type="date" id="recordDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordSource">Source</label>
+                        <select id="recordSource" class="form-control" required>
+                            <option value="">Select Source</option>
+                            <option value="source1">Sharma Dairy</option>
+                            <option value="source2">Gupta Milk</option>
+                            <option value="source3">City Fresh</option>
+                            <option value="manual">Add New Source</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="manualSourceGroup" style="display: none;">
+                        <label for="manualSource">Source Name</label>
+                        <input type="text" id="manualSource" class="form-control" placeholder="Enter source name">
+                    </div>
+                    
+                    <div class="form-group" id="contactGroup">
+                        <label for="recordContact">Contact (Optional)</label>
+                        <input type="tel" id="recordContact" class="form-control" placeholder="Enter contact number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordQuantity">Quantity (Liters)</label>
+                        <input type="number" id="recordQuantity" class="form-control" min="0.1" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordPrice">Price</label>
+                        <input type="number" id="recordPrice" class="form-control" min="0" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordNote">Note (Optional)</label>
+                        <textarea id="recordNote" class="form-control" rows="3" placeholder="Add any additional notes"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelRecordBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Set Budget Goal Modal -->
+    <div class="modal" id="setBudgetGoalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Set Monthly Budget</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="setBudgetGoalForm">
+                    <div class="form-group">
+                        <label for="goalAmount">Budget Amount (₹)</label>
+                        <input type="number" id="goalAmount" class="form-control" min="100" step="100" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goalPeriod">Time Period</label>
+                        <select id="goalPeriod" class="form-control" required>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly" selected>Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goalStartDate">Start Date</label>
+                        <input type="date" id="goalStartDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goalEndDate">End Date</label>
+                        <input type="date" id="goalEndDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelGoalBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Budget</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Note Modal -->
+    <div class="modal" id="addNoteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Quick Note</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addNoteForm">
+                    <div class="form-group">
+                        <label for="noteDate">Date</label>
+                        <input type="date" id="noteDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="noteContent">Note</label>
+                        <textarea id="noteContent" class="form-control" rows="3" placeholder="Enter your note" required></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelNoteBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Note</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Firebase Config -->
+    <script>
+        // Make sure Firebase is loaded before continuing
+        if (typeof firebase === 'undefined') {
+            console.error('Firebase SDK not loaded! Attempting to reload the page...');
+            setTimeout(function() {
+                window.location.reload();
+            }, 2000);
+        } else {
+            console.log('Firebase SDK loaded successfully');
+        }
+    </script>
+    <script src="config/firebase-config.js"></script>
+    <script src="config/firebase.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="assets/js/dark-mode.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/sidebar-navbar.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/record-handlers.js"></script>
+    <script src="assets/js/page-profile-loader.js"></script>
+    <script src="assets/js/auth-protection.js"></script>
+    
+    <!-- Firebase Test Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test Firebase initialization
+            console.log('Testing Firebase initialization...');
+            
+            // Check if Firebase is initialized
+            if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length > 0) {
+                console.log('Firebase is initialized correctly');
+                
+                // Test auth state
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        console.log('User is signed in:', user.email);
+                    } else {
+                        console.log('No user is signed in');
+                    }
+                });
+                
+                // Test dark mode
+                const darkModePreference = localStorage.getItem('darkMode');
+                console.log('Dark mode preference:', darkModePreference);
+                console.log('Dark mode active:', document.body.classList.contains('dark-mode'));
+            } else {
+                console.error('Firebase is not initialized correctly');
+            }
+        });
+    </script>
+</body>
+</html>

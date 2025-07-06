@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-navbar.css">
+    <link rel="stylesheet" href="../assets/css/pages/profile.css">
+    <link rel="stylesheet" href="../assets/css/mobile-navbar.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="horizontal-logo">
+                <img src="../assets/images/logo.png" alt="Shree Doodh Logo" class="vertical-logo">
+            </div>
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a href="../dashboard.html" class="nav-link" id="navDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="milk-records.html" class="nav-link" id="navMilkRecords">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span class="nav-text">Milk Records</span>
+                </a>
+                <a href="statistics.html" class="nav-link" id="navStatistics">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Statistics</span>
+                </a>
+                <a href="sources-pricing.html" class="nav-link" id="navSources">
+                    <i class="fas fa-store"></i>
+                    <span class="nav-text">Sources & Pricing</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-section">
+                
+                <a href="notifications.html" class="nav-link" id="navNotifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notifications</span>
+                    <span class="notification-badge" id="notificationBadge"></span>
+                </a>
+                <a href="#" class="nav-link" id="navRefresh">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="nav-text">Refresh</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-user" id="sidebarUserContainer" style="z-index: 1000;" onclick="toggleUserDropdown(event)">
+            <div class="user-profile-container">
+                <img id="sidebarUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">User Name</span>
+                    <span class="user-email" id="sidebarUserEmail">user@example.com</span>
+                </div>
+                <i class="fas fa-chevron-down dropdown-arrow" id="userDropdownArrow"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- User Dropdown Menu -->
+    <div class="user-dropdown-menu" id="userDropdownMenu">
+        <div class="dropdown-header">
+            <img id="dropdownUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="dropdown-user-avatar">
+            <div class="dropdown-user-info">
+                <span class="dropdown-user-name" id="dropdownUserName">Loading...</span>
+                <span class="dropdown-user-email" id="dropdownUserEmail">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="settings.html#profileSection" class="dropdown-item">
+            <i class="fas fa-user-edit"></i>
+            <span>Edit Profile</span>
+        </a>
+        <a href="settings.html#passwordSection" class="dropdown-item" id="resetPasswordBtn" onclick="resetUserPassword(); return false;">
+            <i class="fas fa-key"></i>
+            <span>Reset Password</span>
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="notificationsToggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode(this.checked)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="#" class="dropdown-item logout-item" id="logoutBtn" onclick="logoutUser(); return false;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-navbar" id="mobileBottomNavbar">
+        <a href="../dashboard.html" class="mobile-nav-item" id="mobileNavDashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="milk-records.html" class="mobile-nav-item" id="mobileNavRecords">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Records</span>
+        </a>
+        <a href="statistics.html" class="mobile-nav-item" id="mobileNavStats">
+            <i class="fas fa-chart-line"></i>
+            <span>Stats</span>
+        </a>
+        <a href="sources-pricing.html" class="mobile-nav-item" id="mobileNavSources">
+            <i class="fas fa-store"></i>
+            <span>Sources</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item active" id="mobileNavMore">
+            <div class="mobile-nav-avatar">
+                <img id="mobileNavAvatar" src="../assets/images/user.png" alt="User Avatar">
+            </div>
+            <span>Profile</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="profile-page">
+            <div class="profile-header">
+                <h1 class="profile-title">Profile</h1>
+            </div>
+            
+            <!-- User Profile Card -->
+            <div class="profile-card">
+                <div class="user-profile-section">
+                    <div class="profile-avatar">
+                        <img id="profileAvatar" src="../assets/images/user.png" alt="User Avatar">
+                    </div>
+                    <div class="profile-user-info">
+                        <h2 id="profileUserName" class="profile-user-name">Loading...</h2>
+                        <p id="profileUserEmail" class="profile-user-email">Loading...</p>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="profile-action-btn" onclick="window.location.href='settings.html'">
+                        <i class="fas fa-user-edit"></i>
+                        <span>Edit Profile</span>
+                    </button>
+                    <button class="profile-action-btn" onclick="resetUserPassword(); return false;">
+                        <i class="fas fa-key"></i>
+                        <span>Reset Password</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Preferences Card -->
+            <div class="profile-card">
+                <h3 class="profile-section-title">Preferences</h3>
+                
+                <div class="toggle-item">
+                    <div class="toggle-label">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                
+                <div class="toggle-item">
+                    <div class="toggle-label">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="profileDarkModeToggle" onclick="toggleDarkMode(this.checked)">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Help Center Card -->
+            <div class="profile-card">
+                <h3 class="profile-section-title">Help Center</h3>
+                
+                <div class="help-section">
+                    <a href="#" class="help-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>FAQs</span>
+                    </a>
+                    <a href="#" class="help-item">
+                        <i class="fas fa-book"></i>
+                        <span>User Guide</span>
+                    </a>
+                    <a href="#" class="help-item">
+                        <i class="fas fa-headset"></i>
+                        <span>Contact Support</span>
+                    </a>
+                    <a href="../../pages/privacy-policy.html" class="help-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Privacy Policy</span>
+                    </a>
+                    <a href="../../pages/terms-and-conditions.html" class="help-item">
+                        <i class="fas fa-file-contract"></i>
+                        <span>Terms & Conditions</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Logout Button -->
+            <div class="profile-card">
+                <button class="profile-action-btn danger" onclick="logoutUser(); return false;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+            
+            <div class="version-info">
+                <p>Shree Doodh v1.0.0</p>
+                <p>&copy; 2024 Shree Doodh. All rights reserved.</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../config/firebase.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../assets/js/dark-mode.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/sidebar-navbar.js"></script>
+    <script src="../assets/js/pages/profile.js"></script>
+    <script src="../assets/js/page-profile-loader.js"></script>
+    <script src="../assets/js/auth-protection.js"></script>
+    
+    <script>
+        // Reset user password function
+        function resetUserPassword() {
+            if (typeof firebase === 'undefined' || !firebase.auth) {
+                console.error('Firebase not initialized');
+                return;
+            }
+            
+            const user = firebase.auth().currentUser;
+            if (!user) {
+                console.error('No user is signed in');
+                return;
+            }
+            
+            const userEmail = user.email;
+            
+            if (!userEmail) {
+                console.error('User has no email address');
+                return;
+            }
+            
+            firebase.auth().sendPasswordResetEmail(userEmail)
+                .then(() => {
+                    console.log('Password reset email sent to', userEmail);
+                    alert('Password reset email sent to ' + userEmail);
+                })
+                .catch((error) => {
+                    console.error('Error sending password reset email:', error);
+                    alert('Error sending password reset email: ' + error.message);
+                });
+        }
+        
+        // Logout user function
+        function logoutUser() {
+            if (typeof firebase === 'undefined' || !firebase.auth) {
+                console.error('Firebase not initialized');
+                return;
+            }
+            
+            firebase.auth().signOut()
+                .then(() => {
+                    // Clear user data from localStorage
+                    localStorage.removeItem('milkMate_userData');
+                    console.log('User signed out successfully');
+                    window.location.href = '../auth/login.html';
+                })
+                .catch((error) => {
+                    console.error('Error signing out:', error);
+                });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sync dark mode toggle with body class
+            const profileDarkModeToggle = document.getElementById('profileDarkModeToggle');
+            if (profileDarkModeToggle) {
+                profileDarkModeToggle.checked = document.body.classList.contains('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html> 

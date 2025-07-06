@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sources & Pricing - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-navbar.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/pages/sources-pricing.css">
+    <link rel="stylesheet" href="../assets/css/mobile-navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="horizontal-logo">
+                <img src="../assets/images/logo.png" alt="Shree Doodh Logo" class="vertical-logo">
+            </div>
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a href="../dashboard.html" class="nav-link" id="navDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="milk-records.html" class="nav-link" id="navMilkRecords">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span class="nav-text">Milk Records</span>
+                </a>
+                <a href="statistics.html" class="nav-link" id="navStatistics">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Statistics</span>
+                </a>
+                <a href="sources-pricing.html" class="nav-link active" id="navSources">
+                    <i class="fas fa-store"></i>
+                    <span class="nav-text">Sources & Pricing</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-section">
+                <a href="notifications.html" class="nav-link" id="navNotifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notifications</span>
+                    <span class="notification-badge" id="notificationBadge"></span>
+                </a>
+                <a href="#" class="nav-link" id="navRefresh">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="nav-text">Refresh</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-user" id="sidebarUserContainer" style="z-index: 1000;" onclick="toggleUserDropdown(event)">
+            <div class="user-profile-container">
+                <img id="sidebarUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">User Name</span>
+                    <span class="user-email" id="sidebarUserEmail">user@example.com</span>
+                </div>
+                <i class="fas fa-chevron-down dropdown-arrow" id="userDropdownArrow"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- User Dropdown Menu -->
+    <div class="user-dropdown-menu" id="userDropdownMenu">
+        <div class="dropdown-header">
+            <img id="dropdownUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="dropdown-user-avatar">
+            <div class="dropdown-user-info">
+                <span class="dropdown-user-name" id="dropdownUserName">Loading...</span>
+                <span class="dropdown-user-email" id="dropdownUserEmail">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="settings.html#profileSection" class="dropdown-item">
+            <i class="fas fa-user-edit"></i>
+            <span>Edit Profile</span>
+        </a>
+        <a href="settings.html#passwordSection" class="dropdown-item" id="resetPasswordBtn" onclick="resetUserPassword(); return false;">
+            <i class="fas fa-key"></i>
+            <span>Reset Password</span>
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="notificationsToggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode(this.checked)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="#" class="dropdown-item logout-item" id="logoutBtn" onclick="logoutUser(); return false;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-navbar" id="mobileBottomNavbar">
+        <a href="../dashboard.html" class="mobile-nav-item" id="mobileNavDashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="milk-records.html" class="mobile-nav-item" id="mobileNavRecords">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Records</span>
+        </a>
+        <a href="statistics.html" class="mobile-nav-item" id="mobileNavStats">
+            <i class="fas fa-chart-line"></i>
+            <span>Stats</span>
+        </a>
+        <a href="sources-pricing.html" class="mobile-nav-item active" id="mobileNavSources">
+            <i class="fas fa-store"></i>
+            <span>Sources</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item" id="mobileNavMore">
+            <div class="mobile-nav-avatar">
+                <img id="mobileNavAvatar" src="../assets/images/user.png" alt="User Avatar">
+            </div>
+            <span>Profile</span>
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="greeting">
+                <h1>Sources & Pricing</h1>
+                <p>Manage milk sources and track price changes</p>
+            </div>
+            <div class="quick-actions">
+                <button id="addNewSourceBtn" class="action-btn primary">
+                    <i class="fas fa-plus"></i>
+                    <span>Add New Source</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Milk Sources Section -->
+        <div class="sources-container">
+            <div class="sources-header">
+                <h2>Milk Sources</h2>
+                <div class="section-filters">
+                    <select id="sourceTypeFilter" class="filter-select">
+                        <option value="all">All Types</option>
+                        <option value="cow">Cow Milk</option>
+                        <option value="buffalo">Buffalo Milk</option>
+                        <option value="mixed">Mixed Milk</option>
+                    </select>
+                    <select id="frequencyFilter" class="filter-select">
+                        <option value="all">All Frequency</option>
+                        <option value="daily">Daily</option>
+                        <option value="occasional">Occasional</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="sources-grid" id="sourcesGrid">
+                <!-- Sources will be populated by JavaScript -->
+                <!-- Example Source Card -->
+                <div class="source-card">
+                    <div class="source-header">
+                        <span class="source-name">Ramesh Dairy</span>
+                        <span class="source-type cow">Cow</span>
+                    </div>
+                    <div class="source-info">
+                        <div class="source-info-item">
+                            <span class="info-label">Contact</span>
+                            <span class="info-value">+91 98765 43210</span>
+                        </div>
+                        <div class="source-info-item">
+                            <span class="info-label">Location</span>
+                            <span class="info-value">Andheri East</span>
+                        </div>
+                        <div class="source-info-item">
+                            <span class="info-label">Current Price</span>
+                            <span class="info-value">₹60.00/L</span>
+                        </div>
+                        <div class="source-info-item">
+                            <span class="info-label">Frequency</span>
+                            <span class="info-value">Daily</span>
+                        </div>
+                    </div>
+                    <div class="source-actions">
+                        <button class="source-action-btn view-history">
+                            <i class="fas fa-history"></i> View History
+                        </button>
+                        <button class="source-action-btn edit">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="source-action-btn delete">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </div>
+                <!-- End Example Source Card -->
+            </div>
+        </div>
+        
+        <!-- Pricing History Section -->
+        <div class="pricing-history-container">
+            <div class="pricing-history-header">
+                <h2>Pricing History</h2>
+                <select id="historySourceSelect" class="source-select">
+                    <option value="">Select Source</option>
+                    <!-- Sources will be populated by JavaScript -->
+                </select>
+            </div>
+            
+            <div class="pricing-timeline" id="pricingTimeline">
+                <div class="timeline-line"></div>
+                
+                <!-- Example Timeline Items -->
+                <div class="timeline-item">
+                    <div class="timeline-date">May 15, 2023</div>
+                    <div class="timeline-point increase"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-price-change">
+                            <span class="timeline-old-price">₹55.00/L</span>
+                            <i class="fas fa-arrow-right timeline-change-icon"></i>
+                            <span class="timeline-new-price">₹60.00/L</span>
+                            <i class="fas fa-arrow-up timeline-change-icon increase"></i>
+                            <span class="timeline-change-percent">(+9.09%)</span>
+                        </div>
+                        <div class="timeline-note">
+                            Price increased due to higher fodder costs.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 10, 2023</div>
+                    <div class="timeline-point decrease"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-price-change">
+                            <span class="timeline-old-price">₹58.00/L</span>
+                            <i class="fas fa-arrow-right timeline-change-icon"></i>
+                            <span class="timeline-new-price">₹55.00/L</span>
+                            <i class="fas fa-arrow-down timeline-change-icon decrease"></i>
+                            <span class="timeline-change-percent">(-5.17%)</span>
+                        </div>
+                        <div class="timeline-note">
+                            Seasonal price adjustment after winter.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 5, 2022</div>
+                    <div class="timeline-point"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-price-change">
+                            <span class="timeline-new-price">₹58.00/L</span>
+                            <span class="timeline-change-label">(Initial Price)</span>
+                        </div>
+                        <div class="timeline-note">
+                            Started sourcing milk from Ramesh Dairy.
+                        </div>
+                    </div>
+                </div>
+                <!-- End Example Timeline Items -->
+            </div>
+        </div>
+    </main>
+    
+    <!-- Add/Edit Source Modal -->
+    <div class="modal" id="sourceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="sourceModalTitle">Add New Source</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="sourceForm">
+                    <input type="hidden" id="sourceId">
+                    
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="sourceName">Source Name</label>
+                            <input type="text" id="sourceName" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group half">
+                            <label for="sourceContact">Contact Number</label>
+                            <input type="tel" id="sourceContact" class="form-control" placeholder="Enter contact number">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="sourceLocation">Location</label>
+                            <input type="text" id="sourceLocation" class="form-control" placeholder="Enter location">
+                        </div>
+                        
+                        <div class="form-group half">
+                            <label for="sourceStartDate">Starting Date</label>
+                            <input type="date" id="sourceStartDate" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="milkType">Milk Type</label>
+                        <div class="form-radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="milkTypeCow" name="milkType" value="cow" checked>
+                                <label for="milkTypeCow">Cow</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="milkTypeBuffalo" name="milkType" value="buffalo">
+                                <label for="milkTypeBuffalo">Buffalo</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="milkTypeMixed" name="milkType" value="mixed">
+                                <label for="milkTypeMixed">Mixed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sourcePrice">Price per Liter (₹)</label>
+                        <input type="number" id="sourcePrice" class="form-control" min="0" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purchaseFrequency">Purchase Frequency</label>
+                        <div class="form-radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="frequencyDaily" name="purchaseFrequency" value="daily" checked>
+                                <label for="frequencyDaily">Daily</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="frequencyOccasional" name="purchaseFrequency" value="occasional">
+                                <label for="frequencyOccasional">Occasionally</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="noteGroup">
+                        <label for="sourceNote">Note (Optional)</label>
+                        <textarea id="sourceNote" class="form-control" rows="3" placeholder="Add any additional notes"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelSourceBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Source</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Update Price Modal -->
+    <div class="modal" id="updatePriceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Update Price</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="updatePriceForm">
+                    <input type="hidden" id="updateSourceId">
+                    
+                    <div class="form-group">
+                        <label for="sourceName">Source</label>
+                        <input type="text" id="updateSourceName" class="form-control" readonly>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="currentPrice">Current Price (₹)</label>
+                            <input type="number" id="currentPrice" class="form-control" readonly>
+                        </div>
+                        
+                        <div class="form-group half">
+                            <label for="newPrice">New Price (₹)</label>
+                            <input type="number" id="newPrice" class="form-control" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="priceChangeDate">Effective From</label>
+                        <input type="date" id="priceChangeDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="priceChangeReason">Reason for Change</label>
+                        <textarea id="priceChangeReason" class="form-control" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelPriceUpdateBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update Price</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../config/firebase.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../assets/js/dark-mode.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/sidebar-navbar.js"></script>
+    <script src="../assets/js/pages/sources-pricing.js"></script>
+    <script src="../assets/js/profile-pic-loader.js"></script>
+    <script src="../assets/js/auth-protection.js"></script>
+</body>
+</html> 

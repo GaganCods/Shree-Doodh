@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-navbar.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/pages/notifications.css">
+    <link rel="stylesheet" href="../assets/css/mobile-navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="horizontal-logo">
+                <img src="../assets/images/logo.png" alt="Shree Doodh Logo" class="vertical-logo">
+            </div>
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a href="../dashboard.html" class="nav-link" id="navDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="milk-records.html" class="nav-link" id="navMilkRecords">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span class="nav-text">Milk Records</span>
+                </a>
+                <a href="statistics.html" class="nav-link" id="navStatistics">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Statistics</span>
+                </a>
+                <a href="sources-pricing.html" class="nav-link" id="navSources">
+                    <i class="fas fa-store"></i>
+                    <span class="nav-text">Sources & Pricing</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-section">
+                <a href="notifications.html" class="nav-link active" id="navNotifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notifications</span>
+                    <span class="notification-badge" id="notificationBadge"></span>
+                </a>
+                <a href="#" class="nav-link" id="navRefresh">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="nav-text">Refresh</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-user" id="sidebarUserContainer" style="z-index: 1000;" onclick="toggleUserDropdown(event)">
+            <div class="user-profile-container">
+                <img id="sidebarUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">Loading...</span>
+                    <span class="user-email" id="sidebarUserEmail">Loading...</span>
+                </div>
+                <i class="fas fa-chevron-down dropdown-arrow" id="userDropdownArrow"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- User Dropdown Menu -->
+    <div class="user-dropdown-menu" id="userDropdownMenu">
+        <div class="dropdown-header">
+            <img id="dropdownUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="dropdown-user-avatar">
+            <div class="dropdown-user-info">
+                <span class="dropdown-user-name" id="dropdownUserName">User Name</span>
+                <span class="dropdown-user-email" id="dropdownUserEmail">user@example.com</span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="settings.html#profileSection" class="dropdown-item">
+            <i class="fas fa-user-edit"></i>
+            <span>Edit Profile</span>
+        </a>
+        <a href="settings.html#passwordSection" class="dropdown-item" id="resetPasswordBtn" onclick="resetUserPassword(); return false;">
+            <i class="fas fa-key"></i>
+            <span>Reset Password</span>
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="notificationsToggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode(this.checked)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="#" class="dropdown-item logout-item" id="logoutBtn" onclick="logoutUser(); return false;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-navbar" id="mobileBottomNavbar">
+        <a href="../dashboard.html" class="mobile-nav-item" id="mobileNavDashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="milk-records.html" class="mobile-nav-item" id="mobileNavRecords">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Records</span>
+        </a>
+        <a href="statistics.html" class="mobile-nav-item" id="mobileNavStats">
+            <i class="fas fa-chart-line"></i>
+            <span>Stats</span>
+        </a>
+        <a href="sources-pricing.html" class="mobile-nav-item" id="mobileNavSources">
+            <i class="fas fa-store"></i>
+            <span>Sources</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item" id="mobileNavMore">
+            <div class="mobile-nav-avatar">
+                <img id="mobileNavAvatar" src="../assets/images/user.png" alt="User Avatar">
+            </div>
+            <span>Profile</span>
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="greeting">
+                <h1>Notifications</h1>
+                <p>Here you can view all system messages, reminders, and updates related to your milk tracking activity.</p>
+            </div>
+            <div class="notification-actions">
+                <button id="markAllReadBtn" class="action-btn secondary">
+                    <i class="fas fa-check-double"></i>
+                    <span>Mark All Read</span>
+                </button>
+                <button id="refreshNotificationsBtn" class="action-btn secondary">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Refresh</span>
+                </button>
+                <button id="clearAllBtn" class="action-btn danger">
+                    <i class="fas fa-trash"></i>
+                    <span>Clear All</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Notifications List -->
+        <div class="notifications-container">
+            <div class="notifications-filters">
+                <div class="filter-group">
+                    <label for="notificationTypeFilter">Filter by Type</label>
+                    <select id="notificationTypeFilter" class="filter-select">
+                        <option value="all" selected>All Types</option>
+                        <option value="reminder">Reminders</option>
+                        <option value="insight">Insights</option>
+                        <option value="alert">Alerts</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="notificationStatusFilter">Filter by Status</label>
+                    <select id="notificationStatusFilter" class="filter-select">
+                        <option value="all" selected>All Status</option>
+                        <option value="unread">Unread</option>
+                        <option value="read">Read</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="notifications-list" id="notificationsList">
+                <!-- Notifications will be populated by JavaScript -->
+                <div class="empty-state" id="emptyNotifications">
+                    <div class="empty-icon">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                    <h3>No Notifications</h3>
+                    <p>You don't have any notifications at the moment.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="confirmationTitle">Confirm Action</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmationMessage">Are you sure you want to proceed with this action?</p>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelConfirmationBtn">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmActionBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Notification Templates (Hidden) -->
+    <template id="notificationTemplate">
+        <div class="notification-item" data-id="">
+            <div class="notification-icon">
+                <i class="fas"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-header">
+                    <h3 class="notification-title"></h3>
+                    <span class="notification-time"></span>
+                </div>
+                <p class="notification-message"></p>
+            </div>
+            <div class="notification-actions">
+                <button class="notification-action mark-read" title="Mark as read">
+                    <i class="fas fa-check"></i>
+                </button>
+                <button class="notification-action delete" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <div class="unread-indicator"></div>
+        </div>
+    </template>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../config/firebase.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../assets/js/dark-mode.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/sidebar-navbar.js"></script>
+    <script src="../assets/js/pages/notifications.js"></script>
+    <script src="../assets/js/profile-pic-loader.js"></script>
+    <script src="../assets/js/auth-protection.js"></script>
+</body>
+</html> 

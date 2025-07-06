@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk Statistics - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-navbar.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/pages/statistics.css">
+    <link rel="stylesheet" href="../assets/css/mobile-navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="horizontal-logo">
+                <img src="../assets/images/logo.png" alt="Shree Doodh Logo" class="vertical-logo">
+            </div>
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a href="../dashboard.html" class="nav-link" id="navDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="milk-records.html" class="nav-link" id="navMilkRecords">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span class="nav-text">Milk Records</span>
+                </a>
+                <a href="statistics.html" class="nav-link active" id="navStatistics">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Statistics</span>
+                </a>
+                <a href="sources-pricing.html" class="nav-link" id="navSources">
+                    <i class="fas fa-store"></i>
+                    <span class="nav-text">Sources & Pricing</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-section">
+                <a href="notifications.html" class="nav-link" id="navNotifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notifications</span>
+                    <span class="notification-badge" id="notificationBadge"></span>
+                </a>
+                <a href="#" class="nav-link" id="navRefresh">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="nav-text">Refresh</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-user" id="sidebarUserContainer" style="z-index: 1000;" onclick="toggleUserDropdown(event)">
+            <div class="user-profile-container">
+                <img id="sidebarUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">User Name</span>
+                    <span class="user-email" id="sidebarUserEmail">user@example.com</span>
+                </div>
+                <i class="fas fa-chevron-down dropdown-arrow" id="userDropdownArrow"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- User Dropdown Menu -->
+    <div class="user-dropdown-menu" id="userDropdownMenu">
+        <div class="dropdown-header">
+            <img id="dropdownUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="dropdown-user-avatar">
+            <div class="dropdown-user-info">
+                <span class="dropdown-user-name" id="dropdownUserName">Loading...</span>
+                <span class="dropdown-user-email" id="dropdownUserEmail">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="settings.html#profileSection" class="dropdown-item">
+            <i class="fas fa-user-edit"></i>
+            <span>Edit Profile</span>
+        </a>
+        <a href="settings.html#passwordSection" class="dropdown-item" id="resetPasswordBtn" onclick="resetUserPassword(); return false;">
+            <i class="fas fa-key"></i>
+            <span>Reset Password</span>
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="notificationsToggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode(this.checked)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="#" class="dropdown-item logout-item" id="logoutBtn" onclick="logoutUser(); return false;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-navbar" id="mobileBottomNavbar">
+        <a href="../dashboard.html" class="mobile-nav-item" id="mobileNavDashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="milk-records.html" class="mobile-nav-item" id="mobileNavRecords">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Records</span>
+        </a>
+        <a href="statistics.html" class="mobile-nav-item active" id="mobileNavStats">
+            <i class="fas fa-chart-line"></i>
+            <span>Stats</span>
+        </a>
+        <a href="sources-pricing.html" class="mobile-nav-item" id="mobileNavSources">
+            <i class="fas fa-store"></i>
+            <span>Sources</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item" id="mobileNavMore">
+            <div class="mobile-nav-avatar">
+                <img id="mobileNavAvatar" src="../assets/images/user.png" alt="User Avatar">
+            </div>
+            <span>Profile</span>
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="greeting">
+                <h1>Milk Statistics</h1>
+                <p>Detailed analytics and insights about your milk records</p>
+            </div>
+            <div class="quick-actions">
+                <button id="exportStatsBtn" class="action-btn secondary">
+                    <i class="fas fa-download"></i>
+                    <span>Export</span>
+                </button>
+                <button id="refreshStatsBtn" class="action-btn primary">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Refresh</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Filters Panel -->
+        <div class="filters-panel">
+            <div class="filter-group date-range-filter">
+                <label for="dateRangeSelect">Date Range</label>
+                <select id="dateRangeSelect" class="filter-select">
+                    <option value="today">Today</option>
+                    <option value="week" selected>This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+            </div>
+            
+            <div class="filter-group custom-date-range" id="customDateRange" style="display: none;">
+                <div class="date-input-container">
+                    <label for="startDate">From</label>
+                    <input type="date" id="startDate" class="date-input">
+                </div>
+                <div class="date-input-container">
+                    <label for="endDate">To</label>
+                    <input type="date" id="endDate" class="date-input">
+                </div>
+                <button id="applyDateRangeBtn" class="filter-btn">Apply</button>
+            </div>
+            
+            <div class="filter-group">
+                <label for="sourceFilter">Source</label>
+                <select id="sourceFilter" class="filter-select">
+                    <option value="all" selected>All Sources</option>
+                    <option value="source1">Sharma Dairy</option>
+                    <option value="source2">Gupta Milk</option>
+                    <option value="source3">City Fresh</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="milkTypeFilter">Milk Type</label>
+                <select id="milkTypeFilter" class="filter-select">
+                    <option value="all" selected>All Types</option>
+                    <option value="cow">Cow</option>
+                    <option value="buffalo">Buffalo</option>
+                    <option value="mixed">Mixed</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="sortOption">Sort By</label>
+                <select id="sortOption" class="filter-select">
+                    <option value="date-desc" selected>Date (Newest First)</option>
+                    <option value="date-asc">Date (Oldest First)</option>
+                    <option value="quantity-desc">Quantity (High to Low)</option>
+                    <option value="quantity-asc">Quantity (Low to High)</option>
+                    <option value="price-desc">Price (High to Low)</option>
+                    <option value="price-asc">Price (Low to High)</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Smart Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card" id="bestSourceCard">
+                <div class="stat-icon milk">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Best Source</h3>
+                    <p class="stat-value" id="bestSourceValue">Sharma Dairy</p>
+                    <p class="stat-change positive" id="bestSourcePrice">₹48.00/L</p>
+                </div>
+            </div>
+            
+            <div class="stat-card" id="expensiveSourceCard">
+                <div class="stat-icon expense">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Most Expensive</h3>
+                    <p class="stat-value" id="expensiveSourceValue">Gupta Milk</p>
+                    <p class="stat-change negative" id="expensiveSourcePrice">₹62.00/L</p>
+                </div>
+            </div>
+            
+            <div class="stat-card" id="frequentDayCard">
+                <div class="stat-icon total">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Most Frequent Day</h3>
+                    <p class="stat-value" id="frequentDayValue">Monday</p>
+                    <p class="stat-change neutral" id="frequentDayCount">8 purchases</p>
+                </div>
+            </div>
+            
+            <div class="stat-card" id="lowestQuantityCard">
+                <div class="stat-icon average">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Lowest Quantity Day</h3>
+                    <p class="stat-value" id="lowestQuantityValue">Sunday</p>
+                    <p class="stat-change negative" id="lowestQuantityAmount">1.5 L</p>
+                </div>
+            </div>
+            
+            <div class="stat-card" id="peakMilkCard">
+                <div class="stat-icon sources">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Peak Milk Day</h3>
+                    <p class="stat-value" id="peakMilkValue">Wednesday</p>
+                    <p class="stat-change positive" id="peakMilkAmount">3.5 L</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts & Analytics Section -->
+        <div class="charts-section">
+            <div class="chart-row">
+                <!-- Milk Quantity Over Time -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Milk Quantity Over Time</h3>
+                        <div class="chart-actions">
+                            <button class="chart-period-btn active" data-period="week">Week</button>
+                            <button class="chart-period-btn" data-period="month">Month</button>
+                            <button class="chart-period-btn" data-period="year">Year</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="quantityChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Expense Trend -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Expense Trend</h3>
+                        <div class="chart-actions">
+                            <button class="chart-period-btn active" data-period="daily">Daily</button>
+                            <button class="chart-period-btn" data-period="monthly">Monthly</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-row">
+                <!-- Source-wise Milk Supply -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Source-wise Milk Supply</h3>
+                    </div>
+                    <div class="chart-container pie-container">
+                        <canvas id="sourceChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Milk Price Fluctuation -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Milk Price Fluctuation</h3>
+                        <div class="chart-actions">
+                            <button class="chart-period-btn active" data-period="3months">3 Months</button>
+                            <button class="chart-period-btn" data-period="6months">6 Months</button>
+                            <button class="chart-period-btn" data-period="1year">1 Year</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-row">
+                <!-- Weekly Comparison -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Weekly Comparison</h3>
+                        <div class="chart-info">
+                            <span class="chart-label">
+                                <span class="color-dot" style="background-color: var(--chart-milk);"></span>This Week
+                            </span>
+                            <span class="chart-label">
+                                <span class="color-dot" style="background-color: var(--chart-expense);"></span>Last Week
+                            </span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="weeklyComparisonChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Expense Distribution by Source -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Expense Distribution by Source</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="expenseDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../config/firebase.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../assets/js/dark-mode.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/sidebar-navbar.js"></script>
+    <script src="../assets/js/pages/statistics.js"></script>
+    <script src="../assets/js/profile-pic-loader.js"></script>
+    <script src="../assets/js/auth-protection.js"></script>
+</body>
+</html> 

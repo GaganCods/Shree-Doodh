@@ -1,0 +1,398 @@
+/* Milk Records Page Styles */
+
+/* Filters Section */
+.filters-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    background-color: var(--background-light);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    margin-bottom: 20px;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-select, .filter-date {
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    background-color: #00a890;
+    box-shadow: 0 4px 12px rgba(0, 191, 166, 0.2);
+}
+
+.filter-btn.secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.filter-btn.secondary:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Records Summary */
+.records-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.summary-item {
+    background-color: var(--background-light);
+    padding: 12px 15px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    flex: 1;
+    min-width: 150px;
+    transition: var(--transition);
+}
+
+.summary-label {
+    font-size: 14px;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.summary-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Records Table */
+.records-container {
+    background-color: var(--background-light);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.records-table-container {
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.records-table th,
+.records-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.records-table th {
+    background-color: var(--secondary-color);
+    font-weight: 600;
+    color: var(--text-light);
+    position: sticky;
+    top: 0;
+}
+
+.records-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.sortable i {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+/* Table Actions */
+.record-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.action-icon.edit:hover {
+    color: var(--primary-color);
+}
+
+.action-icon.delete:hover {
+    color: var(--chart-expense);
+}
+
+/* Pagination */
+.records-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.pagination-btn {
+    padding: 8px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* Auto-Update Section */
+.auto-update-section {
+    background-color: var(--background-light);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.action-btn.small {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.auto-update-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.auto-update-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: var(--background-light);
+    border: var(--card-border);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.auto-update-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.auto-update-details {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* Modal Styles */
+.auto-update-sources-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.auto-update-source-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.auto-update-source-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.auto-update-source-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.auto-update-source-details {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+/* Form Styles */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.form-checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    accent-color: var(--primary-color);
+}
+
+/* Dark Mode Styles */
+body.dark-mode .filters-section,
+body.dark-mode .summary-item,
+body.dark-mode .records-container,
+body.dark-mode .auto-update-section,
+body.dark-mode .auto-update-item {
+    background-color: var(--dark-card-bg);
+    border: var(--dark-card-border);
+}
+
+body.dark-mode .filter-select,
+body.dark-mode .filter-date,
+body.dark-mode .pagination-btn {
+    background-color: var(--dark-card-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .filter-btn.secondary {
+    background-color: var(--dark-secondary-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .records-table th {
+    background-color: var(--dark-secondary-color);
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .records-table td {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .records-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .pagination-btn {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .pagination-btn:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .summary-value,
+body.dark-mode .section-header h2,
+body.dark-mode .auto-update-info h4,
+body.dark-mode .auto-update-source-name {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .summary-label,
+body.dark-mode .pagination-info,
+body.dark-mode .auto-update-details,
+body.dark-mode .auto-update-source-details,
+body.dark-mode .action-icon {
+    color: var(--dark-text-light);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .filters-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-group {
+        flex-wrap: wrap;
+    }
+    
+    .filter-select, .filter-date {
+        flex: 1;
+    }
+    
+    .filter-btn {
+        width: 100%;
+    }
+    
+    .summary-item {
+        min-width: 100%;
+    }
+    
+    .auto-update-list {
+        grid-template-columns: 1fr;
+    }
+} 

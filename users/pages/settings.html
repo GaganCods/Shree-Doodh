@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-navbar.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/pages/settings.css">
+    <link rel="stylesheet" href="../assets/css/mobile-navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Cropper.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="horizontal-logo">
+                <img src="../assets/images/logo.png" alt="Shree Doodh Logo" class="vertical-logo">
+            </div>
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a href="../dashboard.html" class="nav-link" id="navDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="milk-records.html" class="nav-link" id="navMilkRecords">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span class="nav-text">Milk Records</span>
+                </a>
+                <a href="statistics.html" class="nav-link" id="navStatistics">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Statistics</span>
+                </a>
+                <a href="sources-pricing.html" class="nav-link" id="navSources">
+                    <i class="fas fa-store"></i>
+                    <span class="nav-text">Sources & Pricing</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-section">
+                
+                <a href="notifications.html" class="nav-link" id="navNotifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notifications</span>
+                    <span class="notification-badge" id="notificationBadge"></span>
+                </a>
+                <a href="#" class="nav-link" id="navRefresh">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="nav-text">Refresh</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-user" id="sidebarUserContainer" style="z-index: 1000;" onclick="toggleUserDropdown(event)">
+            <div class="user-profile-container">
+                <img id="sidebarUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">User Name</span>
+                    <span class="user-email" id="sidebarUserEmail">user@example.com</span>
+                </div>
+                <i class="fas fa-chevron-down dropdown-arrow" id="userDropdownArrow"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- User Dropdown Menu -->
+    <div class="user-dropdown-menu" id="userDropdownMenu">
+        <div class="dropdown-header">
+            <img id="dropdownUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="dropdown-user-avatar">
+            <div class="dropdown-user-info">
+                <span class="dropdown-user-name" id="dropdownUserName">Loading...</span>
+                <span class="dropdown-user-email" id="dropdownUserEmail">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="settings.html#profileSection" class="dropdown-item">
+            <i class="fas fa-user-edit"></i>
+            <span>Edit Profile</span>
+        </a>
+        <a href="settings.html#passwordSection" class="dropdown-item" id="resetPasswordBtn" onclick="resetUserPassword(); return false;">
+            <i class="fas fa-key"></i>
+            <span>Reset Password</span>
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="notificationsToggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode(this.checked)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="#" class="dropdown-item logout-item" id="logoutBtn" onclick="logoutUser(); return false;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-navbar" id="mobileBottomNavbar">
+        <a href="../dashboard.html" class="mobile-nav-item" id="mobileNavDashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="milk-records.html" class="mobile-nav-item" id="mobileNavRecords">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Records</span>
+        </a>
+        <a href="statistics.html" class="mobile-nav-item" id="mobileNavStats">
+            <i class="fas fa-chart-line"></i>
+            <span>Stats</span>
+        </a>
+        <a href="sources-pricing.html" class="mobile-nav-item" id="mobileNavSources">
+            <i class="fas fa-store"></i>
+            <span>Sources</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item active" id="mobileNavMore">
+            <div class="mobile-nav-avatar">
+                <img id="mobileNavAvatar" src="../assets/images/user.png" alt="User Avatar">
+            </div>
+            <span>Profile</span>
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="greeting">
+                <h1>Settings</h1>
+                <p>Manage your account preferences</p>
+            </div>
+        </div>
+        
+        <!-- Settings Tabs -->
+        <div class="settings-tabs">
+            <button class="tab-btn active" data-tab="profile">Profile</button>
+            <button class="tab-btn" data-tab="password">Password</button>
+            <button class="tab-btn" data-tab="preferences">Preferences</button>
+            <button class="tab-btn danger" data-tab="danger">Danger Zone</button>
+        </div>
+        
+        <!-- Settings Content -->
+        <div class="settings-content">
+            <!-- Profile Settings -->
+            <div class="settings-section active" id="profileSection">
+                <div class="settings-card">
+                    <h2 class="settings-title">Profile Settings</h2>
+                    
+                    <div class="profile-picture-container">
+                        <div class="profile-picture">
+                            <img id="profileImage" src="../assets/images/user.png" alt="Profile Picture">
+                            <div class="profile-picture-overlay" id="profilePictureOverlay">
+                                <i class="fas fa-camera"></i>
+                                <span>Change Photo</span>
+                            </div>
+                        </div>
+                        <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
+                    </div>
+                    
+                    <div class="profile-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mobileNumber">Mobile Number</label>
+                            <input type="tel" id="mobileNumber" class="form-control" placeholder="Enter your mobile number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" readonly>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelProfileBtn">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="saveProfileBtn" disabled>Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Password Reset Section -->
+            <div class="settings-section" id="passwordSection">
+                <div class="settings-card">
+                    <h2 class="settings-title">Reset Your Password</h2>
+                    
+                    <div class="reset-password-container">
+                        <div class="reset-password-info">
+                            <i class="fas fa-envelope-open-text"></i>
+                            <p>We'll send a secure password reset link to your registered email:</p>
+                            <p class="user-email-display" id="resetEmailDisplay">user@example.com</p>
+                        </div>
+                        
+                        <div class="form-actions centered">
+                            <button type="button" class="btn btn-primary" id="sendResetLinkBtn">
+                                <span class="btn-text">Send Reset Link</span>
+                                <span class="btn-loader" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Preferences Settings -->
+            <div class="settings-section" id="preferencesSection">
+                <div class="settings-card">
+                    <h2 class="settings-title">Preferences</h2>
+                    
+                    <div class="preferences-form">
+                        <div class="preference-item">
+                            <div class="preference-label">
+                                <i class="fas fa-bell"></i>
+                                <span>Notifications</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="notificationsPreference" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="preference-item">
+                            <div class="preference-label">
+                                <i class="fas fa-moon"></i>
+                                <span>Dark Mode</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="darkModePreference">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="preference-item">
+                            <div class="preference-label">
+                                <i class="fas fa-calendar"></i>
+                                <span>Default Calendar Start Day</span>
+                            </div>
+                            <select id="calendarStartDay" class="preference-select">
+                                <option value="sunday">Sunday</option>
+                                <option value="monday">Monday</option>
+                            </select>
+                        </div>
+                        
+                        <div class="preference-item">
+                            <div class="preference-label">
+                                <i class="fas fa-home"></i>
+                                <span>Default Start Page</span>
+                            </div>
+                            <select id="defaultStartPage" class="preference-select">
+                                <option value="dashboard">Dashboard</option>
+                                <option value="milk-records">Milk Records</option>
+                                <option value="statistics">Statistics</option>
+                                <option value="sources-pricing">Sources & Pricing</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" id="savePreferencesBtn">Save Preferences</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Danger Zone -->
+            <div class="settings-section" id="dangerSection">
+                <div class="settings-card danger-zone">
+                    <h2 class="settings-title">Danger Zone</h2>
+                    
+                    <div class="danger-actions">
+                        <div class="danger-action-item">
+                            <div class="danger-action-info">
+                                <h3>Logout From All Devices</h3>
+                                <p>This will sign you out from all devices where you're currently logged in.</p>
+                            </div>
+                            <button type="button" class="btn btn-warning" id="logoutAllBtn">Logout All</button>
+                        </div>
+                        
+                        <div class="danger-action-item">
+                            <div class="danger-action-info">
+                                <h3>Delete Account Permanently</h3>
+                                <p>This action is irreversible. All your data will be permanently deleted.</p>
+                            </div>
+                            <button type="button" class="btn btn-danger" id="deleteAccountBtn">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Image Cropper Modal -->
+    <div class="modal" id="cropperModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Crop Profile Picture</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cropper-container">
+                    <img id="cropperImage" src="#" alt="Image to crop">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelCropBtn">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="cropImageBtn">Crop & Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profile Picture Preview Modal -->
+    <div class="modal" id="profilePictureModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Preview Profile Picture</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-container">
+                    <img id="profilePreview" src="#" alt="Profile Preview">
+                </div>
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text">Uploading... <span id="progressPercentage">0%</span></span>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelUploadBtn">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmUploadBtn">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Delete Account Confirmation Modal -->
+    <div class="modal" id="deleteAccountModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Delete Account</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>This action is <strong>irreversible</strong>. All your data will be permanently deleted.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="deleteConfirmPassword">Enter your password to confirm</label>
+                    <input type="password" id="deleteConfirmPassword" class="form-control" placeholder="Enter your password">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete My Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logout Confirmation Modal -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Logout From All Devices</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="logout-warning">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p>You will be signed out from <strong>all devices</strong> where you're currently logged in.</p>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelLogoutBtn">Cancel</button>
+                    <button type="button" class="btn btn-warning" id="confirmLogoutBtn">Logout From All Devices</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Cropper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../config/firebase.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../assets/js/dark-mode.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/sidebar-navbar.js"></script>
+    <script src="../assets/js/pages/settings.js"></script>
+    <script src="../assets/js/profile-pic-loader.js"></script>
+    <script src="../assets/js/auth-protection.js"></script>
+</body>
+</html> 

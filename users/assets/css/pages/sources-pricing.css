@@ -1,0 +1,501 @@
+/* Sources & Pricing Page Styles */
+
+/* Header Actions */
+.quick-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Source List Section */
+.sources-container {
+    background-color: var(--background-light);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.sources-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sources-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Enhanced Filter Styles */
+.section-filters {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.filter-select {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--text-color);
+    min-width: 150px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.filter-select:hover {
+    border-color: #bdbdbd;
+}
+
+/* Sources Grid */
+.sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.source-card {
+    background-color: var(--background-light);
+    border: var(--card-border);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.source-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.source-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.source-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.source-type {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.source-type.cow {
+    background-color: rgba(0, 191, 166, 0.1);
+    color: var(--chart-milk);
+}
+
+.source-type.buffalo {
+    background-color: rgba(255, 107, 107, 0.1);
+    color: var(--chart-expense);
+}
+
+.source-type.mixed {
+    background-color: rgba(77, 150, 255, 0.1);
+    color: var(--chart-sources);
+}
+
+.source-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.source-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 3px;
+}
+
+.info-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+    word-wrap: break-word; /* Allow long text to wrap */
+}
+
+.source-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.source-action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-light);
+    padding: 5px;
+    transition: var(--transition);
+}
+
+.source-action-btn:hover {
+    color: var(--primary-color);
+}
+
+.source-action-btn.delete:hover {
+    color: var(--chart-expense);
+}
+
+/* Pricing History Section */
+.pricing-history-container {
+    background-color: var(--background-light);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.pricing-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.pricing-history-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.source-select {
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    min-width: 200px;
+    transition: var(--transition);
+}
+
+/* Timeline */
+.pricing-timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 120px;
+    width: 3px;
+    background-color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.timeline-date {
+    width: 100px;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.timeline-point {
+    position: absolute;
+    left: 120px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transform: translateX(-6px);
+    z-index: 1;
+    transition: var(--transition);
+}
+
+.timeline-point.increase {
+    background-color: var(--chart-expense);
+}
+
+.timeline-point.decrease {
+    background-color: var(--chart-milk);
+}
+
+.timeline-content {
+    margin-left: 50px;
+    background-color: var(--background-light);
+    border: var(--card-border);
+    border-radius: 12px;
+    padding: 12px 15px;
+    box-shadow: var(--card-shadow);
+    flex: 1;
+    transition: var(--transition);
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.timeline-price-change {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.timeline-old-price {
+    text-decoration: line-through;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.timeline-new-price {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.timeline-change-icon {
+    font-size: 14px;
+}
+
+.timeline-change-icon.increase {
+    color: var(--chart-expense);
+}
+
+.timeline-change-icon.decrease {
+    color: var(--chart-milk);
+}
+
+.timeline-note {
+    font-size: 14px;
+    color: var(--text-light);
+    word-wrap: break-word; /* Allow long text to wrap */
+}
+
+/* Add Source Modal */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group.half {
+    flex: 1;
+    min-width: 200px;
+}
+
+.form-radio-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .sources-container,
+body.dark-mode .pricing-history-container {
+    background-color: var(--dark-card-bg);
+    border: var(--dark-card-border);
+}
+
+body.dark-mode .source-card,
+body.dark-mode .timeline-content {
+    background-color: var(--dark-card-bg);
+    border: var(--dark-card-border);
+}
+
+body.dark-mode .source-name,
+body.dark-mode .sources-header h2,
+body.dark-mode .pricing-history-header h2,
+body.dark-mode .timeline-new-price,
+body.dark-mode .info-value {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .info-label,
+body.dark-mode .timeline-date,
+body.dark-mode .timeline-old-price,
+body.dark-mode .timeline-note,
+body.dark-mode .source-action-btn {
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .source-type.cow {
+    background-color: rgba(141, 236, 180, 0.1);
+    color: var(--dark-primary-color);
+}
+
+body.dark-mode .source-type.buffalo {
+    background-color: rgba(255, 107, 107, 0.1);
+    color: var(--chart-expense);
+}
+
+body.dark-mode .source-type.mixed {
+    background-color: rgba(77, 150, 255, 0.1);
+    color: var(--chart-sources);
+}
+
+body.dark-mode .source-select {
+    background-color: var(--dark-card-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .timeline-line {
+    background-color: var(--dark-secondary-color);
+}
+
+body.dark-mode .source-card:hover,
+body.dark-mode .timeline-content:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sources-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-line {
+        left: 80px;
+    }
+    
+    .timeline-date {
+        width: 70px;
+        padding-right: 10px;
+    }
+    
+    .timeline-point {
+        left: 80px;
+    }
+    
+    .timeline-content {
+        margin-left: 30px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-group.half {
+        width: 100%;
+    }
+    
+    .sources-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .section-filters {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .filter-select {
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .pricing-history-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .source-select {
+        width: 100%;
+    }
+    
+    .source-actions {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .source-action-btn {
+        flex: 1;
+        text-align: center;
+        padding: 8px 5px;
+    }
+    
+    .timeline-price-change {
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-radio-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .source-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+    }
+    
+    .timeline-date {
+        width: 100%;
+        text-align: left;
+        padding-left: 80px;
+        padding-right: 0;
+        margin-bottom: 5px;
+    }
+    
+    .timeline-content {
+        margin-left: 80px;
+    }
+} 

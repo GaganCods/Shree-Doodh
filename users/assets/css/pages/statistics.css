@@ -1,0 +1,627 @@
+/* Statistics Page Styles */
+
+/* Page Container */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Smart Stats Cards */
+.smart-stats-section {
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.smart-stat-card {
+    background-color: var(--background-light);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+.smart-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.smart-stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.smart-stat-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.smart-stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: white;
+}
+
+.icon-green {
+    background-color: var(--success-color);
+}
+
+.icon-blue {
+    background-color: var(--info-color);
+}
+
+.icon-orange {
+    background-color: var(--warning-color);
+}
+
+.icon-red {
+    background-color: var(--danger-color);
+}
+
+.smart-stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 5px 0;
+}
+
+.smart-stat-description {
+    font-size: 13px;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.smart-stat-trend {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.trend-up {
+    color: var(--success-color);
+}
+
+.trend-down {
+    color: var(--danger-color);
+}
+
+/* Chart Cards */
+.chart-card {
+    background-color: var(--background-light);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    transition: var(--transition);
+    position: relative;
+}
+
+.chart-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.chart-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.chart-card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.chart-action-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    color: var(--text-light);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.chart-action-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+/* Chart Size Variations */
+.chart-large {
+    grid-column: span 12;
+}
+
+.chart-medium {
+    grid-column: span 6;
+}
+
+.chart-small {
+    grid-column: span 4;
+}
+
+/* Chart Loading State */
+.chart-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    z-index: 10;
+}
+
+.chart-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--secondary-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Chart Legend */
+.chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+/* No Data State */
+.no-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--text-light);
+}
+
+.no-data i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+
+.no-data-text {
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Date Range Selector */
+.date-range-selector {
+    grid-column: span 12;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--background-light);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+}
+
+.date-range-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.date-range-tab {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: var(--background);
+    color: var(--text-light);
+    border: none;
+}
+
+.date-range-tab.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.date-range-tab:hover:not(.active) {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.custom-date-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Export Options */
+.export-options {
+    display: flex;
+    gap: 10px;
+}
+
+.export-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+}
+
+.export-btn:hover {
+    background-color: var(--background);
+}
+
+/* Dark Mode Styles */
+body.dark-mode .smart-stat-card,
+body.dark-mode .chart-card {
+    background-color: var(--dark-card-bg);
+    border: var(--dark-card-border);
+}
+
+body.dark-mode .smart-stat-title,
+body.dark-mode .chart-card-title,
+body.dark-mode .smart-stat-value {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .smart-stat-description,
+body.dark-mode .legend-item {
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .chart-action-btn {
+    background-color: var(--dark-background);
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .chart-action-btn:hover {
+    background-color: var(--dark-secondary-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .date-range-selector {
+    background-color: var(--dark-card-bg);
+    border: var(--dark-card-border);
+}
+
+body.dark-mode .date-range-tab {
+    background-color: var(--dark-background);
+    color: var(--dark-text-light);
+}
+
+body.dark-mode .date-range-tab:hover:not(.active) {
+    background-color: var(--dark-secondary-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .export-btn {
+    background-color: var(--dark-secondary-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .export-btn:hover {
+    background-color: var(--dark-background);
+}
+
+body.dark-mode .chart-loading {
+    background-color: rgba(30, 30, 30, 0.8);
+}
+
+body.dark-mode .no-data {
+    color: var(--dark-text-light);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .chart-medium {
+        grid-column: span 12;
+    }
+    
+    .chart-small {
+        grid-column: span 6;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .chart-small {
+        grid-column: span 12;
+    }
+    
+    .date-range-selector {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .date-range-tabs {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+    
+    .custom-date-inputs {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .export-options {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .smart-stats-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .chart-card-actions {
+        align-self: flex-end;
+    }
+}
+
+/* Statistics Page Specific Styles */
+
+/* Filters Panel */
+.filters-panel {
+    background-color: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    flex: 1;
+}
+
+.filter-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.filter-select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 191, 166, 0.2);
+}
+
+.custom-date-range {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.date-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.date-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 191, 166, 0.2);
+}
+
+.filter-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    height: 40px;
+}
+
+.filter-btn:hover {
+    background-color: #00a890;
+    box-shadow: 0 4px 12px rgba(0, 191, 166, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .filters-panel {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    .custom-date-range {
+        flex-wrap: wrap;
+    }
+    
+    .date-input-container {
+        flex: 1;
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .filters-panel {
+        padding: 12px;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .custom-date-range {
+        flex-direction: column;
+    }
+    
+    .date-input-container {
+        width: 100%;
+    }
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .filters-panel {
+    background-color: var(--dark-card-bg);
+    border: var(--dark-card-border);
+}
+
+body.dark-mode .filter-select,
+body.dark-mode .date-input {
+    background-color: var(--dark-secondary-color);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .filter-select:focus,
+body.dark-mode .date-input:focus {
+    border-color: var(--dark-primary-color);
+    box-shadow: 0 0 0 2px rgba(141, 236, 180, 0.2);
+}
+
+body.dark-mode .filter-group label {
+    color: var(--dark-text-light);
+}
+
+/* Chart Tooltip Customization */
+.chart-tooltip {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--text-color);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .chart-tooltip {
+    background-color: rgba(22, 47, 61, 0.9);
+    color: var(--dark-text-color);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}

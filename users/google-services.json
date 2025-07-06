@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "291461354213",
+    "firebase_url": "https://quick-solve-pro-default-rtdb.firebaseio.com",
+    "project_id": "quick-solve-pro",
+    "storage_bucket": "quick-solve-pro.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291461354213:android:9bec1173a7e270e12c7a0c",
+        "android_client_info": {
+          "package_name": "com.milk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291461354213-37tnaonoet34vjpnga6qo3ev7lnp1kdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3KB5LmhmsnUUbjdOKZ2Z-tqT-ROk7A20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291461354213-37tnaonoet34vjpnga6qo3ev7lnp1kdk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

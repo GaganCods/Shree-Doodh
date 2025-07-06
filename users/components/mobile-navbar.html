@@ -1,0 +1,204 @@
+<!-- Mobile Navigation Bar -->
+<div class="mobile-navbar" id="mobileNavbar" style="border-bottom: none !important; outline: none !important;">
+    <div class="mobile-navbar-header" style="border-bottom: none !important;">
+        <img src="assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="mobile-logo">
+        <button id="mobileMenuToggle" class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" style="border-bottom: none !important;">
+        <!-- Mobile User Profile -->
+        <div class="mobile-user-profile">
+            <img id="mobileUserAvatar" src="https://cdn-icons-png.flaticon.com/512/3237/3237472.png" alt="User Avatar">
+            <div class="mobile-user-info">
+                <span class="mobile-user-name" id="mobileUserName">User Name</span>
+                <span class="mobile-user-email" id="mobileUserEmail">user@email.com</span>
+            </div>
+            
+            <!-- Mobile User Dropdown Menu -->
+            <div class="mobile-user-dropdown" id="mobileUserDropdown">
+                <a href="pages/settings.html" class="mobile-dropdown-item">
+                    <i class="fas fa-user-edit"></i> Edit Profile
+                </a>
+                <a href="#" class="mobile-dropdown-item" id="mobileChangePasswordBtn">
+                    <i class="fas fa-key"></i> Reset Password
+                </a>
+                <div class="mobile-dropdown-item mobile-dropdown-toggle">
+                    <span><i class="fas fa-bell"></i> Notifications</span>
+                    <label class="switch">
+                        <input type="checkbox" id="mobileDropdownNotificationsToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="mobile-dropdown-item mobile-dropdown-toggle">
+                    <span><i class="fas fa-moon"></i> Dark Mode</span>
+                    <label class="switch">
+                        <input type="checkbox" id="mobileDropdownDarkModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <a href="#" class="mobile-dropdown-item logout-item" id="mobileDropdownLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout Account
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main Navigation Links -->
+        <a href="../users/dashboard.html" class="active" id="navDashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+        <a href="../pages/milk-records.html" id="navMilkRecords"><i class="fas fa-wine-bottle"></i> <span>Milk Records</span></a>
+        <a href="../pages/statistics.html" id="navStatistics"><i class="fas fa-chart-line"></i> <span>Statistics</span></a>
+        <a href="../pages/sources-pricing.html" id="navSources"><i class="fas fa-store"></i> <span>Sources & Pricing</span></a>
+        
+        <!-- Utility Links -->
+        <div class="mobile-nav-divider"></div>
+        <a href="#" class="utility-link" id="navRefresh"><i class="fas fa-sync-alt"></i> <span>Refresh</span></a>
+        <a href="#" class="utility-link" id="navHelp"><i class="fas fa-question-circle"></i> <span>Help Centre</span></a>
+    </nav>
+</div>
+
+
+<script>
+// Mobile navigation functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Get mobile menu elements
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const body = document.body;
+    
+    // Add click event to toggle mobile menu
+    if (mobileMenuToggle && mobileNav) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Toggle mobile menu visibility
+            mobileNav.classList.toggle('open');
+            mobileMenuToggle.classList.toggle('active');
+            body.classList.toggle('mobile-nav-open');
+        });
+    }
+    
+    // Mobile logout functionality
+    const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+    if (mobileLogoutBtn) {
+        mobileLogoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Use global logout function if available
+            if (typeof window.logoutUser === 'function') {
+                window.logoutUser();
+            } else {
+                // Fallback logout
+                firebase.auth().signOut().then(function() {
+                    localStorage.removeItem('milkMate_userData');
+                    window.location.href = '../auth/login.html';
+                }).catch(function(error) {
+                    console.error('Logout failed:', error);
+                });
+            }
+        });
+    }
+    
+    // Mobile dark mode toggle
+    const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
+    if (mobileDarkModeToggle) {
+        // Sync with main dark mode setting
+        mobileDarkModeToggle.checked = document.body.classList.contains('dark-mode');
+        
+        mobileDarkModeToggle.addEventListener('change', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Sync with main dark mode toggle if it exists
+            const mainDarkModeToggle = document.getElementById('darkModeToggle');
+            if (mainDarkModeToggle) {
+                mainDarkModeToggle.checked = mobileDarkModeToggle.checked;
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', mobileDarkModeToggle.checked ? 'enabled' : 'disabled');
+        });
+    }
+    
+    // Mobile notifications toggle
+    const mobileNotificationsToggle = document.getElementById('mobileNotificationsToggle');
+    if (mobileNotificationsToggle) {
+        mobileNotificationsToggle.addEventListener('change', function() {
+            // Save notification preference
+            localStorage.setItem('notifications', mobileNotificationsToggle.checked ? 'enabled' : 'disabled');
+        });
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (mobileNav.classList.contains('open') && 
+            !mobileNav.contains(e.target) && 
+            !mobileMenuToggle.contains(e.target)) {
+            mobileNav.classList.remove('open');
+            mobileMenuToggle.classList.remove('active');
+            body.classList.remove('mobile-nav-open');
+        }
+    });
+    
+    // Initialize mobile user info
+    function updateMobileUserInfo() {
+        const userData = JSON.parse(localStorage.getItem('milkMate_userData') || '{}');
+        const mobileUserName = document.getElementById('mobileUserName');
+        const mobileUserEmail = document.getElementById('mobileUserEmail');
+        const mobileUserAvatar = document.getElementById('mobileUserAvatar');
+        
+        if (userData.displayName) {
+            mobileUserName.textContent = userData.displayName;
+        }
+        
+        if (userData.email) {
+            mobileUserEmail.textContent = userData.email;
+        }
+        
+        if (userData.photoURL) {
+            mobileUserAvatar.src = userData.photoURL;
+        }
+    }
+    
+    // Call the function to update mobile user info
+    updateMobileUserInfo();
+    
+    // Check for dark mode preference on page load
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        if (mobileDarkModeToggle) {
+            mobileDarkModeToggle.checked = true;
+        }
+    }
+    
+    // Set active nav item based on current page
+    function setActiveNavItem() {
+        const currentPath = window.location.pathname;
+        
+        // Remove all active classes first
+        document.querySelectorAll('.mobile-nav a').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Set active class based on current path
+        if (currentPath.includes('dashboard.html')) {
+            document.getElementById('mobileNavDashboard')?.classList.add('active');
+        } else if (currentPath.includes('milk-records.html')) {
+            document.getElementById('mobileNavRecords')?.classList.add('active');
+        } else if (currentPath.includes('statistics.html')) {
+            document.getElementById('mobileNavStatistics')?.classList.add('active');
+        } else if (currentPath.includes('sources-pricing.html')) {
+            document.getElementById('mobileNavSources')?.classList.add('active');
+        } else if (currentPath.includes('settings.html')) {
+            document.getElementById('navSettings')?.classList.add('active');
+        }
+    }
+    
+    // Set active nav item on page load
+    setActiveNavItem();
+    
+    // Refresh button functionality
+    document.getElementById('navRefresh')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.reload();
+    });
+});
+</script> 

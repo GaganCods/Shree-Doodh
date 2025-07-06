@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk Records - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-navbar.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/pages/milk-records.css">
+    <link rel="stylesheet" href="../assets/css/mobile-navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="horizontal-logo">
+                <img src="../assets/images/logo.png" alt="Shree Doodh Logo" class="vertical-logo">
+            </div>
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a href="../dashboard.html" class="nav-link" id="navDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="milk-records.html" class="nav-link active" id="navMilkRecords">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span class="nav-text">Milk Records</span>
+                </a>
+                <a href="statistics.html" class="nav-link" id="navStatistics">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Statistics</span>
+                </a>
+                <a href="sources-pricing.html" class="nav-link" id="navSources">
+                    <i class="fas fa-store"></i>
+                    <span class="nav-text">Sources & Pricing</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-section">
+                <a href="notifications.html" class="nav-link" id="navNotifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="nav-text">Notifications</span>
+                    <span class="notification-badge" id="notificationBadge"></span>
+                </a>
+                <a href="#" class="nav-link" id="navRefresh">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="nav-text">Refresh</span>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="sidebar-user" id="sidebarUserContainer" style="z-index: 1000;" onclick="toggleUserDropdown(event)">
+            <div class="user-profile-container">
+                <img id="sidebarUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name" id="sidebarUserName">User Name</span>
+                    <span class="user-email" id="sidebarUserEmail">user@example.com</span>
+                </div>
+                <i class="fas fa-chevron-down dropdown-arrow" id="userDropdownArrow"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- User Dropdown Menu -->
+    <div class="user-dropdown-menu" id="userDropdownMenu">
+        <div class="dropdown-header">
+            <img id="dropdownUserAvatar" src="../assets/images/user.png" alt="User Avatar" class="dropdown-user-avatar">
+            <div class="dropdown-user-info">
+                <span class="dropdown-user-name" id="dropdownUserName">Loading...</span>
+                <span class="dropdown-user-email" id="dropdownUserEmail">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="settings.html#profileSection" class="dropdown-item">
+            <i class="fas fa-user-edit"></i>
+            <span>Edit Profile</span>
+        </a>
+        <a href="settings.html#passwordSection" class="dropdown-item" id="resetPasswordBtn" onclick="resetUserPassword(); return false;">
+            <i class="fas fa-key"></i>
+            <span>Reset Password</span>
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="notificationsToggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-item toggle-item">
+            <div class="toggle-label">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode(this.checked)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="#" class="dropdown-item logout-item" id="logoutBtn" onclick="logoutUser(); return false;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-navbar" id="mobileBottomNavbar">
+        <a href="../dashboard.html" class="mobile-nav-item" id="mobileNavDashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="milk-records.html" class="mobile-nav-item active" id="mobileNavRecords">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Records</span>
+        </a>
+        <a href="statistics.html" class="mobile-nav-item" id="mobileNavStats">
+            <i class="fas fa-chart-line"></i>
+            <span>Stats</span>
+        </a>
+        <a href="sources-pricing.html" class="mobile-nav-item" id="mobileNavSources">
+            <i class="fas fa-store"></i>
+            <span>Sources</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item" id="mobileNavMore">
+            <div class="mobile-nav-avatar">
+                <img id="mobileNavAvatar" src="../assets/images/user.png" alt="User Avatar">
+            </div>
+            <span>Profile</span>
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="greeting">
+                <h1>Milk Records</h1>
+                <p>Manage your daily milk entries</p>
+            </div>
+            <div class="quick-actions">
+                <button id="addExtraMilkBtn" class="action-btn secondary">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Add Extra Milk</span>
+                </button>
+                <button id="addNewRecordBtn" class="action-btn primary">
+                    <i class="fas fa-plus"></i>
+                    <span>Add New Record</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filter-group">
+                <label for="dateRangeFilter">Date Range:</label>
+                <select id="dateRangeFilter" class="filter-select">
+                    <option value="today">Today</option>
+                    <option value="yesterday">Yesterday</option>
+                    <option value="week" selected>This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+            </div>
+            
+            <div class="filter-group" id="customDateRange" style="display: none;">
+                <label for="startDate">From:</label>
+                <input type="date" id="startDate" class="filter-date">
+                <label for="endDate">To:</label>
+                <input type="date" id="endDate" class="filter-date">
+            </div>
+            
+            <div class="filter-group">
+                <label for="sourceFilter">Source:</label>
+                <select id="sourceFilter" class="filter-select">
+                    <option value="all" selected>All Sources</option>
+                    <!-- Sources will be populated by JavaScript -->
+                </select>
+            </div>
+            
+            <button id="applyFiltersBtn" class="filter-btn">
+                <i class="fas fa-filter"></i>
+                Apply Filters
+            </button>
+            
+            <button id="exportRecordsBtn" class="filter-btn secondary">
+                <i class="fas fa-download"></i>
+                Export
+            </button>
+        </div>
+        
+        <!-- Records Table -->
+        <div class="records-container">
+            <div class="records-summary">
+                <div class="summary-item">
+                    <span class="summary-label">Total Records:</span>
+                    <span class="summary-value" id="totalRecordsCount">0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Quantity:</span>
+                    <span class="summary-value" id="totalQuantity">0 L</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total Expense:</span>
+                    <span class="summary-value" id="totalExpense">₹0.00</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Avg. Price/L:</span>
+                    <span class="summary-value" id="avgPricePerLiter">₹0.00</span>
+                </div>
+            </div>
+            
+            <div class="records-table-container">
+                <table class="records-table" id="milkRecordsTable">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="date">Date <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="source">Source <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="quantity">Quantity (L) <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="price">Price (₹) <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-sort="total">Total (₹) <i class="fas fa-sort"></i></th>
+                            <th>Note</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recordsTableBody">
+                        <!-- Records will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="records-pagination">
+                <button class="pagination-btn" id="prevPageBtn" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <span class="pagination-info" id="paginationInfo">Page 1 of 1</span>
+                <button class="pagination-btn" id="nextPageBtn" disabled>
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Daily Auto-Update Section -->
+        <div class="auto-update-section">
+            <div class="section-header">
+                <h2>Daily Auto-Update Sources</h2>
+                <div class="section-actions">
+                    <button id="editAutoUpdateBtn" class="action-btn small">
+                        <i class="fas fa-edit"></i>
+                        Edit
+                    </button>
+                </div>
+            </div>
+            
+            <div class="auto-update-list" id="autoUpdateSourcesList">
+                <!-- Auto-update sources will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+    
+    <!-- Add New Record Modal -->
+    <div class="modal" id="addRecordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Milk Record</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addRecordForm">
+                    <div class="form-group">
+                        <label for="recordDate">Date</label>
+                        <input type="date" id="recordDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordSource">Source</label>
+                        <select id="recordSource" class="form-control" required>
+                            <option value="">Select Source</option>
+                            <!-- Sources will be populated by JavaScript -->
+                            <option value="manual">Add New Source</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="manualSourceGroup" style="display: none;">
+                        <label for="manualSource">Source Name</label>
+                        <input type="text" id="manualSource" class="form-control" placeholder="Enter source name">
+                    </div>
+                    
+                    <div class="form-group" id="contactGroup">
+                        <label for="recordContact">Contact (Optional)</label>
+                        <input type="tel" id="recordContact" class="form-control" placeholder="Enter contact number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordQuantity">Quantity (Liters)</label>
+                        <input type="number" id="recordQuantity" class="form-control" min="0.1" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordPrice">Price per Liter</label>
+                        <input type="number" id="recordPrice" class="form-control" min="0" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordTotal">Total Price</label>
+                        <input type="number" id="recordTotal" class="form-control" min="0" step="0.01" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recordNote">Note (Optional)</label>
+                        <textarea id="recordNote" class="form-control" rows="3" placeholder="Add any additional notes"></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="markAsDaily" class="form-checkbox">
+                        <label for="markAsDaily">Mark as daily source (auto-update daily)</label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelRecordBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Extra Milk Modal -->
+    <div class="modal" id="addExtraMilkModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Extra Milk</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addExtraMilkForm">
+                    <div class="form-group">
+                        <label for="extraMilkDate">Date</label>
+                        <input type="date" id="extraMilkDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="extraMilkSource">Source</label>
+                        <select id="extraMilkSource" class="form-control" required>
+                            <option value="">Select Source</option>
+                            <!-- Sources will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="extraMilkQuantity">Extra Quantity (Liters)</label>
+                        <input type="number" id="extraMilkQuantity" class="form-control" min="0.1" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="extraMilkNote">Note</label>
+                        <textarea id="extraMilkNote" class="form-control" rows="3" placeholder="Reason for extra milk" required></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelExtraMilkBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Extra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Auto-Update Sources Modal -->
+    <div class="modal" id="editAutoUpdateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Auto-Update Sources</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="auto-update-sources-list" id="editAutoUpdateList">
+                    <!-- Auto-update sources will be populated by JavaScript -->
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelAutoUpdateBtn">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveAutoUpdateBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../config/firebase.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../assets/js/dark-mode.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/sidebar-navbar.js"></script>
+    <script src="../assets/js/pages/milk-records.js"></script>
+    <script src="../assets/js/profile-pic-loader.js"></script>
+    <script src="../assets/js/auth-protection.js"></script>
+</body>
+</html> 

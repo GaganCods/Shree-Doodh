@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../users/assets/images/fav-icon.png">
+    <link rel="apple-touch-icon" href="../users/assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../users/assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../users/assets/css/info.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo-link">
+                <img src="../users/assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="logo-img">
+            </a>
+
+            <div class="hamburger" onclick="toggleMobileNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="mobile-nav" id="mobileNav">
+                <div class="nav-links">
+                    <a href="../index.html" class="btn-nav">Home</a>
+                    <a href="../index.html#features" class="btn-nav">Features</a>
+                    <a href="../index.html#how-it-works" class="btn-nav">How It Works</a>
+                    <a href="../index.html#about" class="btn-nav">About</a>
+                    <a href="../index.html#faq" class="btn-nav">FAQs</a>
+                    <a href="contact-us.html" class="btn-nav">Contact</a>
+                </div>
+                <div class="nav-buttons" id="navButtons">
+                    <!-- This div will be controlled by JavaScript based on login status -->
+                    <div id="loggedOutButtons">
+                        <a href="../users/auth/login.html" class="btn btn-login">Login</a>
+                        <a href="../users/auth/signup.html" class="btn btn-signup">Sign Up</a>
+                    </div>
+                    
+                    <!-- User dropdown (hidden by default) -->
+                    <div id="userDropdown" class="user-dropdown" style="display: none;">
+                        <div class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+                            <img id="userProfilePic" src="../users/assets/images/user.png" alt="Profile Picture" class="user-avatar">
+                            <span id="userName" style="color:#2F2F2F;">User Name</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown-menu-wrapper">
+                            <div class="user-dropdown-menu">
+                                <a href="../users/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                                <a href="../users/pages/settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="section-container">
+            <h1>Get in Touch</h1>
+            <p>We'd love to hear from you. Send us a message!</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content-container">
+        <div class="contact-container">
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control" placeholder="What is this regarding?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Your message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                    
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        Thank you for your message! We'll get back to you soon.
+                    </div>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Our Location</h3>
+                    <p>Shree Doodh Headquarters</p>
+                    <p>123 Milk Street</p>
+                    <p>Mumbai, Maharashtra 400001</p>
+                    <p>India</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-envelope"></i> Email Us</h3>
+                    <p><a href="mailto:support@shreedoodh.com">support@shreedoodh.com</a></p>
+                    <p><a href="mailto:info@shreedoodh.com">info@shreedoodh.com</a></p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-clock"></i> Business Hours</h3>
+                    <p>Monday - Friday: 10AM - 6PM</p>
+                    <p>Saturday: 10AM - 2PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo-link">
+                    <img src="../users/assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="logo-img">
+                </a>
+                <p>Track your milk, simplify your life</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <a href="../index.html#home">Home</a>
+                    <a href="../index.html#features">Features</a>
+                    <a href="../index.html#about">About</a>
+                    <a href="contact-us.html">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="terms-and-conditions.html">Terms & Conditions</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Shree Doodh. All rights reserved.</p>
+            <p>Crafted by <a href="https://gaganpratap.vercel.app/" class="dev-credit" target="_blank">Gagan Creates</a></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="../users/config/firebase-config.js"></script>
+    <script src="../users/config/firebase.js"></script>
+    <script src="../users/assets/js/utils.js"></script>
+    <script src="../users/assets/js/page-profile-loader.js"></script>
+    <script src="../users/assets/js/script.js"></script>
+</body>
+</html> 

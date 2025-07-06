@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Shree Doodh</title>
+    <link rel="icon" type="image/png" href="../users/assets/images/fav-icon.png">
+    <link rel="apple-touch-icon" href="../users/assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../users/assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../users/assets/css/info.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo-link">
+                <img src="../users/assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="logo-img">
+            </a>
+
+            <div class="hamburger" onclick="toggleMobileNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="mobile-nav" id="mobileNav">
+                <div class="nav-links">
+                    <a href="../index.html" class="btn-nav">Home</a>
+                    <a href="../index.html#features" class="btn-nav">Features</a>
+                    <a href="../index.html#how-it-works" class="btn-nav">How It Works</a>
+                    <a href="../index.html#about" class="btn-nav">About</a>
+                    <a href="../index.html#faq" class="btn-nav">FAQs</a>
+                    <a href="contact-us.html" class="btn-nav">Contact</a>
+                </div>
+                <div class="nav-buttons" id="navButtons">
+                    <!-- This div will be controlled by JavaScript based on login status -->
+                    <div id="loggedOutButtons">
+                        <a href="../users/auth/login.html" class="btn btn-login">Login</a>
+                        <a href="../users/auth/signup.html" class="btn btn-signup">Sign Up</a>
+                    </div>
+                    
+                    <!-- User dropdown (hidden by default) -->
+                    <div id="userDropdown" class="user-dropdown" style="display: none;">
+                        <div class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+                            <img id="userProfilePic" src="../users/assets/images/user.png" alt="Profile Picture" class="user-avatar">
+                            <span id="userName" style="color:#2F2F2F;">User Name</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown-menu-wrapper">
+                            <div class="user-dropdown-menu">
+                                <a href="../users/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                                <a href="../users/pages/settings.html"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="section-container">
+            <h1>Terms and Conditions</h1>
+            <p class="last-updated">Last updated: June 19, 2025</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content-container">
+        <section class="content-section" id="introduction">
+            <h2>1. Introduction</h2>
+            <p>Welcome to Shree Doodh. These Terms and Conditions govern your use of our website, mobile application, and services. By accessing or using Shree Doodh, you agree to be bound by these Terms. If you disagree with any part of these terms, you may not access the service.</p>
+        </section>
+
+        <section class="content-section" id="user-obligations">
+            <h2>2. User Obligations</h2>
+            <p>By using our services, you agree to:</p>
+            <ul>
+                <li>Provide accurate and complete information when creating an account</li>
+                <li>Maintain the security of your account and password</li>
+                <li>Accept responsibility for all activities that occur under your account</li>
+                <li>Not use the service for any illegal purposes or in violation of any local laws</li>
+                <li>Not attempt to probe, scan, or test the vulnerability of our system or network</li>
+            </ul>
+        </section>
+
+        <section class="content-section" id="account-access">
+            <h2>3. Account & Access</h2>
+            <p>To use certain features of our service, you may be required to create an account. When you create an account with us, you guarantee that:</p>
+            <ul>
+                <li>You are above the age of 13 or have parental consent</li>
+                <li>The information you provide us is accurate, complete, and current at all times</li>
+                <li>You are the only person authorized to use your account</li>
+            </ul>
+            <p>We reserve the right to terminate or suspend your account immediately, without prior notice or liability, for any reason, including without limitation if you breach the Terms.</p>
+        </section>
+
+        <section class="content-section" id="use-of-service">
+            <h2>4. Use of Service</h2>
+            <p>Our service allows you to track milk consumption, expenses, and related data. You agree to use the service only for its intended purposes and in accordance with these Terms.</p>
+            <h3>Data Entry</h3>
+            <p>You are responsible for the accuracy of the data you enter into the application. We do not verify or validate the data you input.</p>
+            <h3>Service Availability</h3>
+            <p>We strive to provide uninterrupted service, but we do not guarantee that the service will be available at all times. We reserve the right to suspend or restrict access to some features to users.</p>
+        </section>
+
+        <section class="content-section" id="limitation-of-liability">
+            <h2>5. Limitation of Liability</h2>
+            <p>In no event shall Shree Doodh, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+            <ul>
+                <li>Your access to or use of or inability to access or use the service</li>
+                <li>Any conduct or content of any third party on the service</li>
+                <li>Any content obtained from the service</li>
+                <li>Unauthorized access, use or alteration of your transmissions or content</li>
+            </ul>
+        </section>
+
+        <section class="content-section" id="modifications">
+            <h2>6. Modifications to the Terms</h2>
+            <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+            <p>By continuing to access or use our service after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use the service.</p>
+        </section>
+
+        <section class="content-section" id="governing-law">
+            <h2>7. Governing Law</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+            <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect.</p>
+        </section>
+
+        <section class="content-section" id="contact-information">
+            <h2>8. Contact Information</h2>
+            <p>If you have any questions about these Terms, please contact us at:</p>
+            <p>Email: <a href="mailto:legal@shreedoodh.com">legal@shreedoodh.com</a></p>
+            <p>Postal Address: Shree Doodh Headquarters, 123 Milk Street, Mumbai, India</p>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo-link">
+                    <img src="../users/assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="logo-img">
+                </a>
+                <p>Track your milk, simplify your life</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <a href="../index.html#home">Home</a>
+                    <a href="../index.html#features">Features</a>
+                    <a href="../index.html#about">About</a>
+                    <a href="contact-us.html">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="terms-and-conditions.html">Terms & Conditions</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Shree Doodh. All rights reserved.</p>
+            <p>Crafted by <a href="https://gaganpratap.vercel.app/" class="dev-credit" target="_blank">Gagan Creates</a></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="../users/config/firebase-config.js"></script>
+    <script src="../users/config/firebase.js"></script>
+    <script src="../users/assets/js/utils.js"></script>
+    <script src="../users/assets/js/page-profile-loader.js"></script>
+    <script src="../users/assets/js/script.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Toggle mobile navigation
+        function toggleMobileNav() {
+            const navbar = document.getElementById("navbar");
+            navbar.classList.toggle("expanded");
+            
+            // Close user dropdown if open when toggling mobile nav
+            const userDropdown = document.getElementById("userDropdown");
+            if (userDropdown && userDropdown.classList.contains('active')) {
+                userDropdown.classList.remove('active');
+            }
+        }
+
+        // Toggle user dropdown
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById("userDropdown");
+            dropdown.classList.toggle("active");
+        }
+
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add("visible");
+            } else {
+                backToTopButton.classList.remove("visible");
+            }
+            
+            // Navbar scroll effect
+            const navbar = document.getElementById("navbar");
+            if (window.scrollY > 10) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html> 

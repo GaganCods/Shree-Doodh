@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shree Doodh - Reset Password</title>
+  <link rel="icon" type="image/png" href="../assets/images/fav-icon.png" />
+  <link rel="apple-touch-icon" href="../assets/images/fav-icon.png" />
+  <link rel="stylesheet" href="../assets/css/auth.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="../config/firebase-config.js"></script>
+  <script defer src="../assets/js/reset-password.js"></script>
+  
+
+  <!-- Error Handler -->
+  <script>
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+      console.error(
+        'Error: ' + msg +
+        '\nURL: ' + url +
+        '\nLine: ' + lineNo +
+        '\nColumn: ' + columnNo +
+        '\nError object: ' + JSON.stringify(error)
+      );
+      return false;
+    };
+  </script>
+</head>
+
+<body>
+  <div class="auth-container">
+    <div class="auth-box">
+      <div class="auth-header">
+        <div class="auth-logo">
+          <img src="../assets/images/logo.png" alt="MilkMate Logo" class="logo-img" />
+        </div>
+        <h2>Reset Your Password</h2>
+        <p>Set a new password for your account</p>
+      </div>
+
+      <div class="auth-form-container">
+        <form id="resetForm" class="auth-form active">
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <div class="input-group">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="newPassword" placeholder="Enter new password" required />
+              <i class="fas fa-eye toggle-password"></i>
+            </div>
+          </div>
+
+          <div class="password-rule-container">
+            <ul class="password-rules">
+              <li>At least 8 characters</li>
+              <li>One uppercase letter</li>
+              <li>One lowercase letter</li>
+              <li>One number</li>
+            </ul>
+          </div>
+          
+
+          <button type="submit" class="btn-primary">Update Password</button>
+
+          <div class="auth-switch">
+            Remembered your password? <a href="login.html">Go to Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Error/Success Message -->
+  <div id="errorMessage" class="error-message"></div>
+
+</body>
+</html>

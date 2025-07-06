@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Doodh - Track Your Daily Milk Like a Pro</title>
+    <link rel="icon" type="image/png" href="users/assets/images/fav-icon.png">
+    <link rel="apple-touch-icon" href="users/assets/images/fav-icon.png">
+    <link rel="stylesheet" href="users/assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo-link" onclick="scrollToTop(event)">
+        <img src="users/assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="logo-img">
+      </a>
+
+      <div class="hamburger" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="mobile-nav" id="mobileNav">
+        <div class="nav-links">
+          <a href="#home" class="btn-nav">Home</a>
+          <a href="#features" class="btn-nav">Features</a>
+          <a href="#how-it-works" class="btn-nav">How It Works</a>
+          <a href="#about" class="btn-nav">About</a>
+          <a href="#faq" class="btn-nav">FAQs</a>
+          <a href="pages/contact-us.html" class="btn-nav">Contact</a>
+        </div>
+        <div class="nav-buttons" id="navButtons">
+          <!-- This div will be controlled by JavaScript based on login status -->
+          <div id="loggedOutButtons">
+            <a href="users/auth/login.html" class="btn btn-login">Login</a>
+            <a href="users/auth/signup.html" class="btn btn-signup">Sign Up</a>
+          </div>
+          
+          <!-- User dropdown (hidden by default) -->
+          <div id="userDropdown" class="user-dropdown" style="display: none;">
+            <div class="user-dropdown-toggle" onclick="toggleUserDropdown()">
+              <img id="userProfilePic" src="users/assets/images/user.png" alt="Profile Picture" class="user-avatar">
+              <span id="userName" style="color:#2F2F2F;">User Name</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="user-dropdown-menu-wrapper">
+              <div class="user-dropdown-menu">
+                <a href="users/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="users/pages/settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right">
+                <h1>
+  Track Your Daily<br class="mobile-break" />
+  <span class="underline-text">
+    Milk
+    <img src="users/assets/images/underline.png" alt="underline" class="underline-img" />
+  </span> Like a Pro
+</h1>
+
+                  
+                <p>Manage quantity, price, type, and source — all in one place.</p>
+                <div class="hero-buttons">
+                    <a href="#" id="getStartedBtn" class="btn btn-primary">Get Started</a>
+                    <a href="#calculator" class="btn btn-secondary">Try Demo</a>
+                </div>
+            </div>            <div class="hero-image" data-aos="fade-left">                <div class="image-container">
+                    <div class="background-wrapper">
+                        <img src="users/assets/images/h-bg.png" alt="Background Shape" class="background-image">
+                        <img src="assets/girl.png" alt="Shree Doodh Hero Image" class="main-image">
+                    </div>
+                    <img src="users/assets/images/m1.png" alt="Floating Overlay 1" class="floating-overlay-1">
+                    <img src="users/assets/images/m2.png" alt="Floating Overlay 2" class="floating-overlay-2">
+                     <img src="users/assets/images/3d-calendar.png" alt="Floating Overlay 3" class="floating-overlay-3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milk Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Try Our Milk Calculator</h2>
+            <p class="section-subtitle" data-aos="fade-up">Calculate your daily milk consumption and costs</p>
+            
+            <div class="calculator-container" data-aos="fade-up">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="milkType">Milk Type</label>
+                        <select id="milkType" class="form-control">
+                            <option value="cow">Cow Milk</option>
+                            <option value="buffalo">Buffalo Milk</option>
+                            <option value="goat">Goat Milk</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity">Daily Quantity (Liters)</label>
+                        <input type="number" id="quantity" class="form-control" min="0" step="0.1" placeholder="Enter quantity">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="price">Price per Liter (₹)</label>
+                        <input type="number" id="price" class="form-control" min="0" step="0.01" placeholder="Enter price">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="days">Number of Days</label>
+                        <input type="number" id="days" class="form-control" min="1" value="30" placeholder="Enter days">
+                    </div>
+                    
+                    <button id="calculateBtn" class="btn btn-primary">Calculate</button>
+                </div>
+                
+                <div class="calculator-results" id="calculatorResults">
+                    <div class="result-card">
+                        <h3>Daily Summary</h3>
+                        <div class="result-item">
+                            <span>Daily Cost:</span>
+                            <span id="dailyCost">₹0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Daily Quantity:</span>
+                            <span id="dailyQuantity">0 L</span>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3>Monthly Summary</h3>
+                        <div class="result-item">
+                            <span>Total Cost:</span>
+                            <span id="monthlyCost">₹0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Total Quantity:</span>
+                            <span id="monthlyQuantity">0 L</span>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-cta">
+                        <p>Want to track more details and get insights?</p>
+                        <a href="#" id="getStartedBtnCalc" class="btn btn-primary">Get Started Free</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Why Use Shree Doodh?</h2>
+            <div class="features-grid">
+               <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+  <div class="feature-icon"  >
+    <img src="users/assets/images/cow.png" alt="Track All Milk Types">
+  </div>
+  <h3>Track All Milk Types</h3>
+  <p>Log cow, buffalo, goat, or custom types easily</p>
+</div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+    <img src="users/assets/images/report.png" alt="Track All Milk Types">
+  </div>
+                    <h3>Visual Reports</h3>
+                    <p>Auto-generated charts and summaries</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                   <div class="feature-icon">
+    <img src="users/assets/images/monitor.png" alt="Track All Milk Types">
+  </div>
+                    <h3>Monitor Expenses</h3>
+                    <p>Calculate cost per source or type</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+    <img src="users/assets/images/backups.png" alt="Track All Milk Types">
+  </div>
+                    <h3>Cloud Backup</h3>
+                    <p>Synced with your Google account on Firebase</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">How It Works</h2>
+            <div class="steps-container">
+                <div class="step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h3>Create an Account</h3>
+                    <p>Login with Email/Google</p>
+                    <img src="users/assets/images/step1.png" alt="Step 1">
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3>Add Milk Entries</h3>
+                    <p>Enter quantity, rate, and source</p>
+                    <img src="users/assets/images/step2.png" alt="Step 2">
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h3>Get Smart Stats</h3>
+                    <p>View monthly usage and spending</p>
+                    <img src="users/assets/images/step3.png" alt="Step 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview Section -->
+    <section class="dashboard-preview">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Live Preview</h2>
+            <p class="section-subtitle" data-aos="fade-up">See how Shree Doodh helps you track and manage your milk consumption</p>
+            
+            <div class="preview-container" data-aos="fade-up">
+                <div class="preview-tabs">
+                    <button class="preview-tab active" data-tab="dashboard">Dashboard</button>
+                    <button class="preview-tab" data-tab="reports">Reports</button>
+                    <button class="preview-tab" data-tab="history">History</button>
+                </div>
+                
+                <div class="preview-content">
+                    <div class="preview-panel active" id="dashboard-panel">
+                        <div class="preview-header">
+                            <h3>Your Daily Overview</h3>
+                            <span class="preview-date">Today's Summary</span>
+                        </div>
+                        <div class="preview-stats">
+                            <div class="stat-card">
+                                <div class="stat-icon">📊</div>
+                                <div class="stat-info">
+                                    <h4>Daily Consumption</h4>
+                                    <p>2.5 Liters</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">💰</div>
+                                <div class="stat-info">
+                                    <h4>Today's Cost</h4>
+                                    <p>₹125.00</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">📈</div>
+                                <div class="stat-info">
+                                    <h4>Monthly Average</h4>
+                                    <p>2.3 Liters/day</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-chart">
+                            <img src="users/assets/images/chart.png" alt="Consumption Chart" class="chart-image">
+                        </div>
+                    </div>
+                    
+                    <div class="preview-panel" id="reports-panel">
+                        <div class="preview-header">
+                            <h3>Monthly Reports</h3>
+                            <span class="preview-date">March 2024</span>
+                        </div>
+                        <div class="report-summary">
+                            <div class="report-card">
+                                <h4>Total Consumption</h4>
+                                <p class="report-value">75.5 L</p>
+                                <span class="report-trend positive">↑ 5% from last month</span>
+                            </div>
+                            <div class="report-card">
+                                <h4>Total Cost</h4>
+                                <p class="report-value">₹3,775.00</p>
+                                <span class="report-trend negative">↑ 3% from last month</span>
+                            </div>
+                            <div class="report-card">
+                                <h4>Average Daily</h4>
+                                <p class="report-value">2.4 L</p>
+                                <span class="report-trend neutral">Same as last month</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-panel" id="history-panel">
+                        <div class="preview-header">
+                            <h3>Purchase History</h3>
+                            <span class="preview-date">Last 7 Days</span>
+                        </div>
+                        <div class="history-list">
+                            <div class="history-item">
+                                <div class="history-date">Today</div>
+                                <div class="history-details">
+                                    <h4>Cow Milk</h4>
+                                    <p>2.5 L × ₹50.00</p>
+                                </div>
+                                <div class="history-amount">₹125.00</div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-date">Yesterday</div>
+                                <div class="history-details">
+                                    <h4>Buffalo Milk</h4>
+                                    <p>2.0 L × ₹60.00</p>
+                                </div>
+                                <div class="history-amount">₹120.00</div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-date">2 days ago</div>
+                                <div class="history-details">
+                                    <h4>Cow Milk</h4>
+                                    <p>2.5 L × ₹50.00</p>
+                                </div>
+                                <div class="history-amount">₹125.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preview-cta">
+                    <p>Ready to start tracking your milk consumption?</p>
+                    <div class="preview-buttons">
+                        <a href="#" id="getStartedBtnPreview" class="btn btn-primary">Get Started Free</a>
+                        <a href="#" id="watchDemoBtn" class="btn btn-secondary">Watch Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">About Us</h2>
+            <div class="about-content" data-aos="fade-up">
+                <p>Shree Doodh was built for everyday users who want to simplify how they track their milk usage. Whether you're managing your family's intake or tracking dairy purchases, we help you stay organized.</p>
+                <div class="about-details">
+                    <p>Founded in 2024</p>
+                    <p>Contact: hello@shreedoodh.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <p>"Shree Doodh has made tracking our family's milk consumption so much easier!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="users/assets/images/user.png" alt="User Avatar">
+                        <div>
+                            <h4>Raghav</h4>
+                            <p>Family User</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <p>"The expense tracking feature has helped me save money on milk purchases."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="users/assets/images/u2.png" alt="User Avatar">
+                        <div>
+                            <h4>Shradha</h4>
+                            <p>Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Is this app free to use?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Shree Doodh offers a free basic plan with essential features. Premium features are available with our paid plans.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Can I track multiple milk types?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You can track different types of milk including cow, buffalo, goat, and custom types.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Do I need to log in every day?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, you can log in whenever you want to update your milk entries. The app will maintain your data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- CTA Section -->
+<section class="cta">
+  <div class="cta-container">
+    <div class="cta-content">
+      <div class="cta-badge">Limited Time Offer</div>
+      <h2>Start Tracking Your Milk Today</h2>
+      <p>Join 10,000+ happy users managing their milk consumption</p>
+
+      <button class="btn btn-shine">
+  <a href="#" id="getStartedBtnCTA" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center;">
+    <span class="btn-icon">🚀</span>
+    Get Started Free
+  </a>
+</button>
+
+    </div>
+
+    <div class="cta-image">
+      <img src="users/assets/images/3d-milk.png" alt="CTA Illustration" />
+    </div>
+  </div>
+</section>
+
+   <!-- Back to Top Button -->
+   <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a> 
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+      <a href="#" class="logo-link" onclick="scrollToTop(event)">
+                    <img src="users/assets/images/horizontal-logo.png" alt="Shree Doodh Logo" class="logo-img">
+                    <span class="logo-text"></span>
+                </a>
+
+
+        <p>Track your milk, simplify your life</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="pages/contact-us.html">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <a href="pages/terms-and-conditions.html">Terms & Conditions</a>
+          <a href="pages/privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-column">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Shree Doodh. All rights reserved.</p>
+      <p>Crafted by <a href="https://gaganpratap.vercel.app/" class="dev-credit" target="_blank">Gagan Creates</a></p>
+    </div>
+  </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="users/config/firebase-config.js"></script>
+    <script src="users/config/firebase.js"></script>
+    <script src="users/assets/js/utils.js"></script>
+    <script src="users/assets/js/page-profile-loader.js"></script>
+    <script src="users/assets/js/script.js"></script>
+    
+    <script>
+      // Additional functions for the index page
+      function toggleMobileNav() {
+        const navbar = document.getElementById("navbar");
+        navbar.classList.toggle("expanded");
+        
+        // Close user dropdown if open when toggling mobile nav
+        const userDropdown = document.getElementById("userDropdown");
+        if (userDropdown && userDropdown.classList.contains('active')) {
+          userDropdown.classList.remove('active');
+        }
+      }
+    
+      function scrollToTop(event) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    
+      window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("navbar");
+        const hero = document.getElementById("home"); // your hero section
+        if (!hero) return;
+        
+        const heroTop = hero.getBoundingClientRect().top;
+    
+        if (window.scrollY > 10) {
+          navbar.classList.remove("home-mode");
+          navbar.classList.add("scrolled");
+        } else if (heroTop <= 0) {
+          navbar.classList.remove("scrolled");
+          navbar.classList.add("home-mode");
+        } else {
+          navbar.classList.remove("scrolled", "home-mode");
+        }
+      });
+      
+      // Handle Get Started buttons
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true
+        });
+        
+        // Get all "Get Started" buttons
+        const getStartedButtons = [
+          document.getElementById('getStartedBtn'),
+          document.getElementById('getStartedBtnCalc'),
+          document.getElementById('getStartedBtnPreview'),
+          document.getElementById('getStartedBtnCTA')
+        ];
+        
+        // Add click event listeners to all Get Started buttons
+        getStartedButtons.forEach(button => {
+          if (button) {
+            button.addEventListener('click', function(e) {
+              e.preventDefault();
+              handleGetStartedClick();
+            });
+          }
+        });
+        
+        // Also handle the Watch Demo button
+        const watchDemoBtn = document.getElementById('watchDemoBtn');
+        if (watchDemoBtn) {
+          watchDemoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleGetStartedClick();
+          });
+        }
+        
+        // Function to handle Get Started button clicks
+        function handleGetStartedClick() {
+          // Check if user is logged in
+          firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in, redirect to dashboard
+              window.location.href = 'users/dashboard.html';
+            } else {
+              // No user is signed in, redirect to signup page
+              window.location.href = 'users/auth/signup.html';
+            }
+          });
+        }
+      });
+    </script>
+
+</body>
+</html>
