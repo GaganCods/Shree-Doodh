@@ -63,7 +63,7 @@ The application implements a secure authentication system with the following fea
 
 1. Clone the repository
 ```
-git clone https://github.com/yourusername/shree-doodh.git
+git clone https://github.com/GaganCods/shree-doodh.git
 ```
 
 2. Set up Firebase
@@ -111,5 +111,6 @@ Shree Doodh/
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Credits
+
 
 Designed and developed by [Gagan Creates](https://gaganpratap.vercel.app/) 
